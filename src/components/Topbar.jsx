@@ -1,3 +1,5 @@
+ import SocialLinks from './SocialLinks'
+
 function Topbar() {
   return (
     <div className="w-full border-b border-white/10 bg-slate-950/70 backdrop-blur">
@@ -10,20 +12,7 @@ function Topbar() {
           <span className="hidden sm:inline">Sun - Fri : 10:00AM to 06:00PM</span>
         </div>
 
-        <div className="flex items-center gap-3">
-          <a className="hover:text-white" href="#" aria-label="Twitter">
-            X
-          </a>
-          <a className="hover:text-white" href="#" aria-label="Facebook">
-            f
-          </a>
-          <a className="hover:text-white" href="#" aria-label="Instagram">
-            in
-          </a>
-          <a className="hover:text-white" href="#" aria-label="LinkedIn">
-            li
-          </a>
-        </div>
+        <SocialLinks variant="topbar" />
       </div>
     </div>
   )

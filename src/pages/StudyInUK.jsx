@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
+import SocialLinks from '../components/SocialLinks'
 
 function StudyInUK({ onOpenModal }) {
   return (
@@ -387,10 +388,8 @@ function StudyInUK({ onOpenModal }) {
               <div className="mt-3 text-sm text-white/70">
                 We help you with test preparation, course selection, documentation, and visa processing — from start to finish.
               </div>
-              <div className="mt-4 flex items-center gap-3 text-sm text-white/60">
-                <a href="#" className="hover:text-white">X</a>
-                <a href="#" className="hover:text-white">f</a>
-                <a href="#" className="hover:text-white">in</a>
+              <div className="mt-4">
+                <SocialLinks />
               </div>
             </div>
 

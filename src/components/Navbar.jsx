@@ -53,12 +53,12 @@ function Navbar() {
 
   return (
     <div className="sticky top-0 z-50 w-full border-b border-white/10 bg-slate-950/35 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
-        <button type="button" onClick={() => onNav('#home')} className="group inline-flex items-center">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-5">
+        <button type="button" onClick={() => onNav('/')} className="group inline-flex items-center">
           <img
             src="/logo.png"
             alt="GIEC abroad consultant"
-            className="h-12 w-auto select-none opacity-95 transition group-hover:opacity-100 group-hover:brightness-110 group-hover:drop-shadow-[0_0_18px_rgba(16,185,129,0.55)]"
+            className="h-14 w-auto select-none opacity-95 transition group-hover:opacity-100 group-hover:brightness-110 group-hover:drop-shadow-[0_0_18px_rgba(16,185,129,0.55)]"
             draggable={false}
           />
         </button>
@@ -67,14 +67,14 @@ function Navbar() {
           <button
             type="button"
             onClick={() => onNav('#home')}
-            className="rounded-lg px-3 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/5 hover:text-brand-300"
+            className="rounded-lg px-4 py-2.5 text-base font-semibold text-white/80 transition hover:bg-white/5 hover:text-brand-300"
           >
             HOME
           </button>
           <button
             type="button"
             onClick={() => onNav('#about')}
-            className="rounded-lg px-3 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/5 hover:text-brand-300"
+            className="rounded-lg px-4 py-2.5 text-base font-semibold text-white/80 transition hover:bg-white/5 hover:text-brand-300"
           >
             ABOUT US
           </button>
@@ -86,7 +86,7 @@ function Navbar() {
                 setOpenStudy((v) => !v)
                 setOpenServices(false)
               }}
-              className={`rounded-lg px-3 py-2 text-sm font-semibold transition hover:bg-white/5 hover:text-brand-300 ${
+              className={`rounded-lg px-4 py-2.5 text-base font-semibold transition hover:bg-white/5 hover:text-brand-300 ${
                 openStudy ? 'text-brand-300' : 'text-white/80'
               }`}
             >
@@ -116,7 +116,7 @@ function Navbar() {
                 setOpenServices((v) => !v)
                 setOpenStudy(false)
               }}
-              className={`rounded-lg px-3 py-2 text-sm font-semibold transition hover:bg-white/5 hover:text-brand-300 ${
+              className={`rounded-lg px-4 py-2.5 text-base font-semibold transition hover:bg-white/5 hover:text-brand-300 ${
                 openServices ? 'text-brand-300' : 'text-white/80'
               }`}
             >
@@ -142,14 +142,14 @@ function Navbar() {
           <button
             type="button"
             onClick={() => onNav('#events')}
-            className="rounded-lg px-3 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/5 hover:text-brand-300"
+            className="rounded-lg px-4 py-2.5 text-base font-semibold text-white/80 transition hover:bg-white/5 hover:text-brand-300"
           >
             NEWS/UPDATES
           </button>
           <button
             type="button"
             onClick={() => onNav('#contact')}
-            className="rounded-lg px-3 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/5 hover:text-brand-300"
+            className="rounded-lg px-4 py-2.5 text-base font-semibold text-white/80 transition hover:bg-white/5 hover:text-brand-300"
           >
             CONTACT US
           </button>
