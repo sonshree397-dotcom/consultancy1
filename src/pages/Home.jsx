@@ -349,12 +349,35 @@ function Home({ onOpenModal }) {
               <div className="mt-2 text-sm text-white/70">By 15000+ Visa Approved students</div>
               <div className="mt-7 grid gap-4 text-sm text-white/80">
                 <div>
+                  <div className="text-white/60">Address :</div>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Putalisadak%2028%2C%20Opposite%20Valley%20Hospital%2C%20Bagmati%2C%20Kathmandu"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-1 block text-lg font-semibold text-white hover:text-brand-300"
+                  >
+                    Putalisadak 28, Opposite Valley Hospital
+                    <br />
+                    Bagmati, Kathmandu
+                  </a>
+                </div>
+                <div>
                   <div className="text-white/60">Any Questions? Call us</div>
-                  <div className="mt-1 text-lg font-semibold text-white">01-5333565</div>
+                  <a
+                    href="tel:01-5364723"
+                    className="mt-1 inline-block text-lg font-semibold text-white hover:text-brand-300"
+                  >
+                    01-5364723
+                  </a>
                 </div>
                 <div>
                   <div className="text-white/60">Any Questions? Email us</div>
-                  <div className="mt-1 text-lg font-semibold text-white">info@example.com</div>
+                  <a
+                    href="mailto:admin@giecintl.com.np"
+                    className="mt-1 inline-block text-lg font-semibold text-white hover:text-brand-300"
+                  >
+                    admin@giecintl.com.np
+                  </a>
                 </div>
                 <button
                   type="button"

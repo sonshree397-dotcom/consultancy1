@@ -5,6 +5,7 @@ import CountUp from './CountUp'
 function Hero({ onOpenModal, onApplyNow }) {
   const swipeConfidenceThreshold = 8000
   const swipePower = (offset, velocity) => Math.abs(offset) * velocity
+  const dragDistanceThreshold = 120
   const maxSubLines = 4
 
   const slides = [
@@ -271,12 +272,24 @@ function Hero({ onOpenModal, onApplyNow }) {
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.15}
+            dragMomentum={false}
+            style={{ touchAction: 'pan-y' }}
             onDragEnd={(e, { offset, velocity }) => {
+              if (offset.x <= -dragDistanceThreshold) {
+                paginate(1)
+                return
+              }
+
+              if (offset.x >= dragDistanceThreshold) {
+                paginate(-1)
+                return
+              }
+
               const swipe = swipePower(offset.x, velocity.x)
               if (swipe < -swipeConfidenceThreshold) paginate(1)
               else if (swipe > swipeConfidenceThreshold) paginate(-1)
             }}
-            className="relative mx-auto aspect-[5/4] w-full max-w-md overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/0 shadow-soft"
+            className="relative mx-auto aspect-[5/4] w-full max-w-md cursor-grab overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/0 shadow-soft active:cursor-grabbing"
           >
             <AnimatePresence mode="wait">
               <motion.img

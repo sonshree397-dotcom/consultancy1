@@ -1,13 +1,23 @@
 import { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
 import Layout from './components/Layout'
 import Modal from './components/Modal'
 import Home from './pages/Home'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import NewsUpdates from './pages/NewsUpdates'
+import StudyInAustralia from './pages/StudyInAustralia'
+import StudyInCanada from './pages/StudyInCanada'
+import StudyInIreland from './pages/StudyInIreland'
 import StudyInUK from './pages/StudyInUK'
+import StudyInNewZealand from './pages/StudyInNewZealand'
+import StudyInUSA from './pages/StudyInUSA'
 
 function App() {
   const [open, setOpen] = useState(false)
+  const location = useLocation()
 
   const openModal = () => setOpen(true)
   const closeModal = () => setOpen(false)
@@ -20,11 +30,21 @@ function App() {
 
   return (
     <Layout onOpenModal={openModal}>
-      <Routes>
-        <Route path="/" element={<Home onOpenModal={openModal} />} />
-        <Route path="/study-in-uk" element={<StudyInUK onOpenModal={openModal} />} />
-        <Route path="*" element={<Home onOpenModal={openModal} />} />
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Home onOpenModal={openModal} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/news-updates" element={<NewsUpdates />} />
+          <Route path="/contact" element={<Contact onOpenModal={openModal} />} />
+          <Route path="/study-in-australia" element={<StudyInAustralia onOpenModal={openModal} />} />
+          <Route path="/study-in-canada" element={<StudyInCanada onOpenModal={openModal} />} />
+          <Route path="/study-in-ireland" element={<StudyInIreland onOpenModal={openModal} />} />
+          <Route path="/study-in-uk" element={<StudyInUK onOpenModal={openModal} />} />
+          <Route path="/study-in-usa" element={<StudyInUSA onOpenModal={openModal} />} />
+          <Route path="/study-in-new-zealand" element={<StudyInNewZealand onOpenModal={openModal} />} />
+          <Route path="*" element={<Home onOpenModal={openModal} />} />
+        </Routes>
+      </AnimatePresence>
 
       <Modal open={open} onClose={closeModal} title="Talk with us">
         <form onSubmit={onSubmit} className="grid gap-4">

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
 import SocialLinks from '../components/SocialLinks'
 
-function StudyInUK({ onOpenModal }) {
+function StudyInUSA({ onOpenModal }) {
   const reveal = {
     hidden: { opacity: 0, y: 18 },
     show: { opacity: 1, y: 0 },
@@ -18,17 +18,15 @@ function StudyInUK({ onOpenModal }) {
     >
       <section className="relative overflow-hidden bg-slate-950">
         <div className="absolute inset-0">
-          <img src="/uk.jpg" alt="" className="h-full w-full object-cover opacity-60" />
+          <img src="/us.jpg" alt="" className="h-full w-full object-cover opacity-60" />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-slate-950/40 to-slate-950/20" />
         </div>
 
         <div className="relative mx-auto max-w-6xl px-4 py-16">
           <div className="text-center">
             <div className="text-sm font-semibold text-white/70">Study Abroad</div>
-            <h1 className="mt-2 text-4xl font-extrabold text-white md:text-5xl">Study in the UK</h1>
-            <div className="mt-4 text-sm text-white/70">
-              Admissions guidance, documentation support, and visa assistance.
-            </div>
+            <h1 className="mt-2 text-4xl font-extrabold text-white md:text-5xl">Study in the USA</h1>
+            <div className="mt-4 text-sm text-white/70">Admissions guidance, documentation support, and visa assistance.</div>
           </div>
         </div>
       </section>
@@ -36,12 +34,12 @@ function StudyInUK({ onOpenModal }) {
       <div className="sticky top-24 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl gap-8 overflow-x-auto px-4 py-3 text-base font-semibold text-slate-700">
           {[
-            { t: 'Overview', h: '#uk-overview' },
-            { t: 'Requirements', h: '#uk-requirements' },
-            { t: 'Intakes', h: '#uk-intakes' },
-            { t: 'Costs', h: '#uk-costs' },
-            { t: 'Scholarships', h: '#uk-scholarships' },
-            { t: 'Post Study Work', h: '#uk-psw' },
+            { t: 'Overview', h: '#usa-overview' },
+            { t: 'Requirements', h: '#usa-requirements' },
+            { t: 'Intakes', h: '#usa-intakes' },
+            { t: 'Costs', h: '#usa-costs' },
+            { t: 'Scholarships', h: '#usa-scholarships' },
+            { t: 'Post Study Work', h: '#usa-psw' },
           ].map((l) => (
             <a key={l.t} href={l.h} className="whitespace-nowrap hover:text-brand-700">
               {l.t}
@@ -50,7 +48,7 @@ function StudyInUK({ onOpenModal }) {
         </div>
       </div>
 
-      <section id="uk-overview" className="scroll-mt-28 mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-12 md:grid-cols-3">
+      <section id="usa-overview" className="scroll-mt-28 mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-12 md:grid-cols-3">
         <motion.div
           variants={reveal}
           initial="hidden"
@@ -60,13 +58,13 @@ function StudyInUK({ onOpenModal }) {
         >
           <div className="prose prose-slate max-w-none">
             <p>
-              The United Kingdom is one of the most preferred destinations for Nepali students due to world-class
-              universities, shorter course durations, and excellent post-study opportunities. Choosing the right
-              university and course is critical, and our counsellors help you plan every step with clarity.
+              The USA offers world-leading universities, flexible course options, and strong career pathways. With the
+              right planning — course selection, shortlist, SOP, and documentation — your application becomes much
+              stronger.
             </p>
             <p>
-              From course selection and scholarships to documentation and visa processing, we provide end-to-end
-              support to make your journey smooth and stress-free.
+              From university shortlisting and scholarships to documentation and visa interview preparation, we provide
+              end-to-end support to make your journey smooth and stress-free.
             </p>
           </div>
 
@@ -77,13 +75,13 @@ function StudyInUK({ onOpenModal }) {
                 { k: 'Language spoken', v: 'English' },
                 {
                   k: 'Cost of study',
-                  v: 'Undergraduate - £9,500 to £22,000 per year | Postgraduate programs - £10,500 to £30,000 per year',
+                  v: 'Undergraduate - $20,000 to $45,000 per year | Postgraduate programs - $22,000 to $55,000 per year',
                 },
-                { k: 'Source of funding', v: 'Scholarships, Income, Education Loan, Cash Deposit' },
-                { k: 'Education requirement', v: "A Level/+2, PCL, Bachelor’s degree" },
-                { k: 'Degrees', v: 'Diploma, Bachelors, Masters, Doctoral' },
-                { k: 'Intakes', v: 'January, September, May/June' },
-                { k: 'Visa', v: 'Student Visa Route' },
+                { k: 'Source of funding', v: 'Scholarships, Assistantship, Education Loan, Savings' },
+                { k: 'Education requirement', v: '+2, Diploma, Bachelor’s degree' },
+                { k: 'Degrees', v: 'Bachelors, Masters, Doctoral' },
+                { k: 'Intakes', v: 'Spring, Fall, Summer (varies by institution)' },
+                { k: 'Visa', v: 'F-1 Student Visa' },
               ].map((r) => (
                 <div key={r.k} className="grid grid-cols-1 gap-2 px-6 py-4 text-sm text-slate-700 sm:grid-cols-3">
                   <div className="text-sm font-semibold text-slate-700">{r.k}</div>
@@ -94,15 +92,15 @@ function StudyInUK({ onOpenModal }) {
           </div>
 
           <div className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
-            <div className="text-lg font-extrabold text-slate-900">Why UK?</div>
+            <div className="text-lg font-extrabold text-slate-900">Why USA?</div>
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {[
-                'Multicultural Society',
-                'Funding through Scholarships',
-                'Quality Education and Value of Degree',
-                'Career Opportunities and Employability',
-                'Academic Support and Resources',
-                'Part-time Job Facilities',
+                'Top-ranked universities and research',
+                'Flexible programs and majors',
+                'Scholarships and assistantships',
+                'Strong career outcomes',
+                'Large Nepali student community',
+                'Global networking opportunities',
               ].map((t) => (
                 <div key={t} className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
                   {t}
@@ -112,7 +110,7 @@ function StudyInUK({ onOpenModal }) {
           </div>
 
           <div className="mt-10">
-            <div className="text-xl font-extrabold text-slate-900">Most sought Universities in UK by Nepalese students</div>
+            <div className="text-xl font-extrabold text-slate-900">Popular Universities in the USA</div>
             <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200">
               <div className="grid grid-cols-1 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-700 sm:grid-cols-3">
                 <div>University</div>
@@ -121,41 +119,10 @@ function StudyInUK({ onOpenModal }) {
               </div>
               <div className="divide-y divide-slate-200 bg-white">
                 {[
-                  {
-                    u: 'York St. John University',
-                    f: '£10,800 - £14,800',
-                    c: 'Health, Computer Science, MBA, Project Management',
-                  },
-                  {
-                    u: 'University of East London',
-                    f: '£12,500 - £14,340',
-                    c: 'Computer Engineering, Data Science, Business, MBA, AI',
-                  },
-                  {
-                    u: 'Coventry University',
-                    f: '£12,500 - £16,800',
-                    c: 'Business, Health, Computing, Cyber Security',
-                  },
-                  {
-                    u: 'University of West London',
-                    f: '£14,250',
-                    c: 'Computer, Business, Hospitality, Cyber, IT',
-                  },
-                  {
-                    u: 'University of Exeter',
-                    f: '£17,100 - £23,700 (varies by program)',
-                    c: 'Business and Management, Engineering, Psychology',
-                  },
-                  {
-                    u: 'London South Bank University',
-                    f: '£13,500 - £15,000',
-                    c: 'Civil Engineering, Architecture, Business',
-                  },
-                  {
-                    u: 'Northumbria University',
-                    f: '£13,000 - £15,500',
-                    c: 'Computer Science, Nursing, Business',
-                  },
+                  { u: 'Arizona State University', f: '$25,000 - $40,000', c: 'IT, Engineering, Business, Data' },
+                  { u: 'University of Texas (varies)', f: '$20,000 - $45,000', c: 'Engineering, Business, Science' },
+                  { u: 'Northeastern University', f: '$30,000 - $55,000', c: 'CS, Business, Analytics' },
+                  { u: 'University of South Florida', f: '$18,000 - $32,000', c: 'IT, Public Health, Business' },
                 ].map((r) => (
                   <div key={r.u} className="grid grid-cols-1 gap-3 px-5 py-4 text-sm text-slate-700 sm:grid-cols-3">
                     <div className="font-semibold">{r.u}</div>
@@ -167,107 +134,69 @@ function StudyInUK({ onOpenModal }) {
             </div>
           </div>
 
-          <div id="uk-requirements" className="scroll-mt-28 mt-12">
-            <div className="text-3xl font-extrabold text-slate-900">Study in UK : Requirements for Nepalese students</div>
+          <div id="usa-requirements" className="scroll-mt-28 mt-12">
+            <div className="text-3xl font-extrabold text-slate-900">Study in the USA: Requirements</div>
             <div className="mt-4 text-sm text-slate-600">
-              Before you choose to study in UK you have to meet some requirements such as English requirements,
-              Academic requirements, interview passed, CAS requirements etc.
+              Requirements vary by program. We help you prepare academics, English scores, SOP, and complete visa
+              documentation.
             </div>
 
             <ol className="mt-6 list-decimal space-y-4 pl-5 text-sm text-slate-700">
               <li>
-                <span className="font-semibold">Receive University Offer Letter:</span> The first step is to receive UK
-                Universities offer letter. For that you have to show your academic documents and English test report.
+                <span className="font-semibold">Offer / I-20:</span> Receive admission offer and I-20 from the university.
               </li>
               <li>
-                <span className="font-semibold">English Test:</span> English test could be IELTS, PTE, TOEFL etc. Some
-                universities also accept 12th standard English to meet the English entry requirements.
+                <span className="font-semibold">English Test:</span> IELTS/TOEFL/Duolingo (and SAT/GRE where required).
               </li>
               <li>
-                <span className="font-semibold">Financial:</span> You must show that you have enough fund to cover tuition
-                fee and living expenses.
+                <span className="font-semibold">Financial:</span> Proof of funds to cover tuition and living costs.
               </li>
               <li>
-                <span className="font-semibold">Pre-CAS Interview:</span> Majority of the universities conduct credibility
-                interviews as part of admission process.
+                <span className="font-semibold">SEVIS & Interview:</span> Pay SEVIS fee and attend visa interview.
               </li>
               <li>
-                <span className="font-semibold">Visa Processing:</span> Through student visa processing you should undergo
-                submitting online application, evidence of financial stability and language proficiency.
-              </li>
-              <li>
-                <span className="font-semibold">Health Insurance:</span> Students may pay Immigration Health Surcharge at the
-                time of visa application.
+                <span className="font-semibold">Visa Documentation:</span> Strong SOP, academics, and supporting documents.
               </li>
             </ol>
           </div>
 
-          <div id="uk-intakes" className="scroll-mt-28 mt-12">
-            <div className="text-3xl font-extrabold text-slate-900">Intakes in UK for Nepalese Students</div>
+          <div id="usa-intakes" className="scroll-mt-28 mt-12">
+            <div className="text-3xl font-extrabold text-slate-900">Intakes in the USA</div>
             <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white">
               <div className="grid grid-cols-2 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-700">
                 <div>Intake</div>
                 <div>Month</div>
               </div>
               <div className="divide-y divide-slate-200">
-                {[{ i: 'January', m: 'January' }, { i: 'May/June', m: 'May/June' }, { i: 'September', m: 'September' }].map(
+                {[{ i: 'Spring', m: 'January' }, { i: 'Summer', m: 'May/June' }, { i: 'Fall', m: 'August/September' }].map(
                   (r) => (
                     <div key={r.i} className="grid grid-cols-2 px-5 py-3 text-sm text-slate-700">
                       <div className="font-semibold">{r.i}</div>
                       <div>{r.m}</div>
                     </div>
-                  ),
+                  )
                 )}
               </div>
             </div>
           </div>
 
-          <div id="uk-costs" className="scroll-mt-28 mt-12">
-            <div className="text-3xl font-extrabold text-slate-900">Study in UK: Approximate cost for Nepalese students</div>
+          <div id="usa-costs" className="scroll-mt-28 mt-12">
+            <div className="text-3xl font-extrabold text-slate-900">Study in the USA: Approximate costs</div>
             <div className="mt-4 text-sm text-slate-600">
-              Before you decide to study in UK you should understand the costs you may face. Below are some important
-              topics for your costing.
+              Costs depend on the university and state. We help you estimate tuition + living costs before you apply.
             </div>
 
             <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white">
               <div className="grid grid-cols-3 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-700">
                 <div>S.no.</div>
-                <div>Total cost to study in UK from Nepal</div>
-                <div>Average fee (in Pound)</div>
+                <div>Total cost to study in the USA</div>
+                <div>Average fee (USD)</div>
               </div>
               <div className="divide-y divide-slate-200">
                 {[
-                  { s: 1, c: 'Bachelor degree', a: 'GBP 9,500 to GBP 20,000 per year' },
-                  { s: 2, c: "Master's degree", a: 'GBP 10,000 to GBP 20,000 per year' },
-                  { s: 3, c: 'Doctoral degree', a: 'GBP 15,000 to GBP 24,000 per year' },
-                ].map((r) => (
-                  <div key={r.s} className="grid grid-cols-3 px-5 py-3 text-sm text-slate-700">
-                    <div className="font-semibold">{r.s}</div>
-                    <div>{r.c}</div>
-                    <div>{r.a}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white">
-              <div className="grid grid-cols-3 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-700">
-                <div>S.no.</div>
-                <div>Living cost</div>
-                <div>Average fee (in Pounds)</div>
-              </div>
-              <div className="divide-y divide-slate-200">
-                {[
-                  { s: 1, c: 'Expenses', a: 'Approximate price' },
-                  { s: 2, c: 'Shared Accommodation', a: '£400 – £600 per month' },
-                  { s: 3, c: 'Bills', a: '£40 – £50 per month' },
-                  { s: 4, c: 'Housekeeping / Food', a: '£120 – £200 per month' },
-                  { s: 5, c: 'TV Licence', a: '£12.56 per month' },
-                  { s: 6, c: 'Mobile phone', a: '£15 – £50 per month' },
-                  { s: 7, c: 'Shoes / Clothes', a: '£25 per month' },
-                  { s: 8, c: 'Sport (avg membership)', a: '£10 – £20 per month' },
-                  { s: 9, c: 'Stationery / Books', a: '£21 per month' },
-                  { s: 10, c: 'Socializing', a: '£80 per month' },
+                  { s: 1, c: 'Bachelor degree', a: '$20,000 to $45,000 per year' },
+                  { s: 2, c: "Master's degree", a: '$22,000 to $55,000 per year' },
+                  { s: 3, c: 'Doctoral degree', a: '$25,000 to $60,000 per year (varies)' },
                 ].map((r) => (
                   <div key={r.s} className="grid grid-cols-3 px-5 py-3 text-sm text-slate-700">
                     <div className="font-semibold">{r.s}</div>
@@ -279,30 +208,28 @@ function StudyInUK({ onOpenModal }) {
             </div>
 
             <div className="mt-4 text-xs text-slate-500">
-              Monthly living expenses can vary (inside London vs outside London). We help you calculate your cost based
-              on your city and course.
+              Living expenses vary by state and city. We guide you based on your destination and program.
             </div>
           </div>
 
-          <div id="uk-scholarships" className="scroll-mt-28 mt-12">
-            <div className="text-3xl font-extrabold text-slate-900">Study in UK: Scholarships for Nepalese Students</div>
+          <div id="usa-scholarships" className="scroll-mt-28 mt-12">
+            <div className="text-3xl font-extrabold text-slate-900">Study in the USA: Scholarships</div>
             <div className="mt-4 space-y-4 text-sm text-slate-700">
               <div>
-                <span className="font-semibold">University Scholarships:</span> Many universities in UK announce
-                scholarships targeting Nepali students. Some provide discounts on first year tuition fees.
+                <span className="font-semibold">Merit Scholarships:</span> Many universities offer partial scholarships based
+                on academics.
               </div>
               <div>
-                <span className="font-semibold">Government Scholarships:</span> UK government bodies and organizations
-                provide scholarship opportunities for international students.
+                <span className="font-semibold">Assistantships:</span> For graduate programs, RA/TA opportunities may reduce
+                tuition and provide stipend.
               </div>
             </div>
           </div>
 
-          <div id="uk-psw" className="scroll-mt-28 mt-12">
-            <div className="text-3xl font-extrabold text-slate-900">Study in UK: Post Study Work (PSW) for Nepalese Students</div>
+          <div id="usa-psw" className="scroll-mt-28 mt-12">
+            <div className="text-3xl font-extrabold text-slate-900">Study in the USA: Post Study Work</div>
             <div className="mt-4 text-sm leading-relaxed text-slate-700">
-              After you complete your Bachelor’s or Master’s degree in the UK, you can get post study work visa. During
-              this time you do not need to study, you can work and gain valuable international experience.
+              Students may be eligible for OPT (and STEM OPT where applicable). We guide you on timelines and process.
             </div>
           </div>
 
@@ -311,22 +238,20 @@ function StudyInUK({ onOpenModal }) {
             <div className="mt-4 space-y-3">
               {[
                 {
-                  q: 'Is IELTS mandatory for the UK?',
-                  a: 'It depends on the university and course. Many accept IELTS, PTE, TOEFL or Duolingo. We guide you based on your target institutions.',
+                  q: 'Do I need GRE/SAT?',
+                  a: 'It depends on your university and program. Many programs waive GRE/SAT; we help you shortlist accordingly.',
                 },
                 {
-                  q: 'How much bank balance is required?',
-                  a: 'Financial requirements vary by course, city, and visa rules. We help you calculate the right amount and prepare proper financial documentation.',
+                  q: 'Can I get scholarships/assistantship?',
+                  a: 'Yes. Scholarships depend on your profile; assistantships depend on program and availability. We guide you on options.',
                 },
                 {
-                  q: 'Can I get scholarships?',
-                  a: 'Yes. Scholarships depend on your profile, academics, and university. We help you shortlist scholarship-friendly universities and prepare strong applications.',
+                  q: 'Is visa interview difficult?',
+                  a: 'With the right documentation and preparation it becomes manageable. We help you prepare for interview confidently.',
                 },
               ].map((f) => (
                 <details key={f.q} className="group rounded-2xl border border-slate-200 bg-white p-5">
-                  <summary className="cursor-pointer list-none text-sm font-semibold text-slate-900">
-                    {f.q}
-                  </summary>
+                  <summary className="cursor-pointer list-none text-sm font-semibold text-slate-900">{f.q}</summary>
                   <div className="mt-3 text-sm text-slate-600">{f.a}</div>
                 </details>
               ))}
@@ -453,13 +378,11 @@ function StudyInUK({ onOpenModal }) {
             </div>
           </div>
 
-          <div className="mt-10 border-t border-white/10 pt-6 text-xs text-white/60">
-            © {new Date().getFullYear()} GIEC. All rights reserved.
-          </div>
+          <div className="mt-10 border-t border-white/10 pt-6 text-xs text-white/60">© {new Date().getFullYear()} GIEC. All rights reserved.</div>
         </div>
       </footer>
     </motion.main>
   )
 }
 
-export default StudyInUK
+export default StudyInUSA
