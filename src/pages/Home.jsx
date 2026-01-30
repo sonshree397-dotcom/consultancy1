@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import Hero from '../components/Hero'
 import CountUp from '../components/CountUp'
 import SocialLinks from '../components/SocialLinks'
+import SuccessStoriesGrid from '../components/SuccessStoriesGrid'
 
 function Home({ onOpenModal }) {
   const [showTop, setShowTop] = useState(false)
@@ -389,6 +390,12 @@ function Home({ onOpenModal }) {
         </div>
       </section>
 
+      <section id="success-stories" className="scroll-mt-24 bg-slate-950">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <SuccessStoriesGrid title="Student Results" subtitle="Recent student achievements and success stories." limit={4} />
+        </div>
+      </section>
+
       <section id="contact" className="scroll-mt-24 bg-slate-900">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
@@ -506,9 +513,7 @@ function Home({ onOpenModal }) {
                 <div>
                   <div className="text-white/60">Address :</div>
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=Putalisadak%2028%2C%20Opposite%20Valley%20Hospital%2C%20Bagmati%2C%20Kathmandu"
-                    target="_blank"
-                    rel="noreferrer"
+                    href="/location"
                     className="mt-1 block text-lg font-semibold text-white hover:text-brand-300"
                   >
                     Putalisadak 28, Opposite Valley Hospital
@@ -627,8 +632,8 @@ function Home({ onOpenModal }) {
             </div>
           </div>
 
-          <div className="mt-10 border-t border-white/10 pt-6 text-xs text-white/60">
-            © {new Date().getFullYear()} GIEC. All rights reserved.
+          <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/60">
+            © {new Date().getFullYear()} GIEC. All rights reserved. Powered by Gecko Works Nepal
           </div>
         </div>
       </footer>

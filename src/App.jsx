@@ -8,6 +8,9 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import NewsUpdates from './pages/NewsUpdates'
+import SuccessStory from './pages/SuccessStory'
+import Certificate from './pages/Certificate'
+import Location from './pages/Location'
 import StudyInAustralia from './pages/StudyInAustralia'
 import StudyInCanada from './pages/StudyInCanada'
 import StudyInIreland from './pages/StudyInIreland'
@@ -79,6 +82,9 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home onOpenModal={openModal} />} />
           <Route path="/about" element={<About />} />
+          <Route path="/success-story" element={<SuccessStory />} />
+          <Route path="/certificate/:country" element={<Certificate />} />
+          <Route path="/location" element={<Location />} />
           <Route path="/news-updates" element={<NewsUpdates />} />
           <Route path="/contact" element={<Contact onOpenModal={openModal} />} />
           <Route path="/study-in-australia" element={<StudyInAustralia onOpenModal={openModal} />} />

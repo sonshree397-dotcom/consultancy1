@@ -549,8 +549,8 @@ function StudyInUK() {
             </div>
           </div>
 
-          <div className="mt-10 border-t border-white/10 pt-6 text-xs text-white/60">
-            © {new Date().getFullYear()} GIEC. All rights reserved.
+          <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/60">
+            © {new Date().getFullYear()} GIEC. All rights reserved. Powered by Gecko Works Nepal
           </div>
         </div>
       </footer>

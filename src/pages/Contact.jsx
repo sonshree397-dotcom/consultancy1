@@ -90,9 +90,7 @@ function Contact({ onOpenModal: _onOpenModal }) {
               <div>
                 <div className="font-semibold text-slate-900">Address :</div>
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=Putalisadak%2028%2C%20Opposite%20Valley%20Hospital%2C%20Bagmati%2C%20Kathmandu"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/location"
                   className="mt-2 inline-block hover:text-brand-700"
                 >
                   Putalisadak 28, Opposite Valley Hospital, Bagmati, Kathmandu
@@ -337,7 +335,7 @@ function Contact({ onOpenModal: _onOpenModal }) {
             </div>
           </div>
 
-          <div className="mt-10 border-t border-white/10 pt-6 text-xs text-white/60">© {new Date().getFullYear()} GIEC. All rights reserved.</div>
+          <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/60">© {new Date().getFullYear()} GIEC. All rights reserved. Powered by Gecko Works Nepal</div>
         </div>
       </motion.footer>
     </motion.main>
