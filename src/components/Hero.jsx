@@ -93,7 +93,7 @@ function Hero({ onOpenModal, onApplyNow }) {
       subLines: [
         { t: 'Do you want a good Scholarships !', c: 'text-white/80' },
         { t: 'And make your cost down !', c: 'text-white/80' },
-        { t: "Don\'t Worry", c: 'text-brand-200 font-semibold italic' },
+        { t: "Don't Worry", c: 'text-brand-200 font-semibold italic' },
         { t: 'Visit US, Our Expert will guide you', c: 'text-white/70' },
       ],
       ctaPrimary: 'Apply now',
@@ -130,6 +130,28 @@ function Hero({ onOpenModal, onApplyNow }) {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(900px_circle_at_20%_20%,rgba(16,185,129,0.25),transparent_60%),radial-gradient(800px_circle_at_90%_40%,rgba(52,211,153,0.18),transparent_55%),linear-gradient(to_bottom,rgba(2,6,23,0.55),rgba(2,6,23,1))]" />
+
+      <button
+        type="button"
+        aria-label="Previous slide"
+        onClick={() => paginate(-1)}
+        className="absolute left-3 top-1/2 z-20 hidden -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-slate-950/35 p-3 text-white/80 backdrop-blur transition hover:bg-slate-950/55 hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-400/40 sm:flex"
+      >
+        <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+          <path d="M15 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        aria-label="Next slide"
+        onClick={() => paginate(1)}
+        className="absolute right-3 top-1/2 z-20 hidden -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-slate-950/35 p-3 text-white/80 backdrop-blur transition hover:bg-slate-950/55 hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-400/40 sm:flex"
+      >
+        <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+          <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
 
       <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-14 md:grid-cols-2 md:py-20">
         <motion.div

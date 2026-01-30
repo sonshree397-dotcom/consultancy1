@@ -1,19 +1,53 @@
 import { motion } from 'framer-motion'
+import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import SocialLinks from '../components/SocialLinks'
 
-function StudyInCanada({ onOpenModal }) {
+function StudyInCanada() {
   const reveal = {
-    hidden: { opacity: 0, y: 18 },
-    show: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 14 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 90,
+        damping: 18,
+        mass: 0.8,
+      },
+    },
+  }
+
+  const [sidebarForm, setSidebarForm] = useState({ fullName: '', phone: '', email: '', message: '' })
+  const [sidebarErrors, setSidebarErrors] = useState({})
+
+  const fullNameRef = useRef(null)
+  const phoneRef = useRef(null)
+  const emailRef = useRef(null)
+  const messageRef = useRef(null)
+
+  const validateSidebar = (v) => {
+    const next = {}
+    if (!v.fullName.trim()) next.fullName = 'Full name is required.'
+
+    const phone = v.phone.replace(/\s+/g, '')
+    if (!phone) next.phone = 'Contact number is required.'
+    else if (!/^\d+$/.test(phone)) next.phone = 'Contact number must be numeric.'
+    else if (phone.length !== 10) next.phone = 'Enter a 10-digit contact number.'
+
+    if (!v.email.trim()) next.email = 'Email is required.'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) next.email = 'Enter a valid email.'
+
+    if (!v.message.trim()) next.message = 'Message is required.'
+    return next
   }
 
   return (
     <motion.main
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 10 }}
-      transition={{ duration: 0.25 }}
+      exit={{ opacity: 0, y: 8 }}
+      transition={{ type: 'spring', stiffness: 90, damping: 18, mass: 0.9 }}
       className="bg-white text-slate-900"
     >
       <section className="relative overflow-hidden bg-slate-950">
@@ -23,16 +57,21 @@ function StudyInCanada({ onOpenModal }) {
         </div>
 
         <div className="relative mx-auto max-w-6xl px-4 py-16">
-          <div className="text-center">
+          <motion.div variants={reveal} initial="hidden" animate="show" className="text-center">
             <div className="text-sm font-semibold text-white/70">Study Abroad</div>
-            <h1 className="mt-2 text-4xl font-extrabold text-white md:text-5xl">Study in Canada</h1>
+            <h1 className="mt-2 text-6xl font-extrabold text-white md:text-8xl lg:text-9xl">Study in Canada</h1>
             <div className="mt-4 text-sm text-white/70">Admissions guidance, documentation support, and visa assistance.</div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <div className="sticky top-24 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl gap-8 overflow-x-auto px-4 py-3 text-base font-semibold text-slate-700">
+        <motion.div
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: 'spring', stiffness: 110, damping: 20, mass: 0.9, delay: 0.05 }}
+          className="mx-auto flex max-w-6xl gap-8 overflow-x-auto px-4 py-3 text-base font-semibold text-slate-700"
+        >
           {[
             { t: 'Overview', h: '#can-overview' },
             { t: 'Requirements', h: '#can-requirements' },
@@ -45,7 +84,7 @@ function StudyInCanada({ onOpenModal }) {
               {l.t}
             </a>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <section id="can-overview" className="scroll-mt-28 mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-12 md:grid-cols-3">
@@ -53,7 +92,6 @@ function StudyInCanada({ onOpenModal }) {
           variants={reveal}
           initial="hidden"
           animate="show"
-          transition={{ duration: 0.45, ease: 'easeOut' }}
           className="md:col-span-2"
         >
           <div className="prose prose-slate max-w-none">
@@ -263,7 +301,7 @@ function StudyInCanada({ onOpenModal }) {
           variants={reveal}
           initial="hidden"
           animate="show"
-          transition={{ duration: 0.45, ease: 'easeOut', delay: 0.05 }}
+          transition={{ type: 'spring', stiffness: 90, damping: 18, mass: 0.8, delay: 0.06 }}
           className="md:col-span-1"
         >
           <div className="sticky top-28 rounded-2xl border border-brand-600/40 bg-white p-6 shadow">
@@ -273,39 +311,92 @@ function StudyInCanada({ onOpenModal }) {
               <div>
                 <div className="text-xs font-semibold text-slate-500">Full Name</div>
                 <input
-                  className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none ring-brand-500/30 focus:ring-2"
+                  ref={fullNameRef}
+                  value={sidebarForm.fullName}
+                  onChange={(e) => {
+                    const val = e.target.value
+                    setSidebarForm((p) => ({ ...p, fullName: val }))
+                    setSidebarErrors((p) => ({ ...p, fullName: undefined }))
+                  }}
+                  className={`mt-2 w-full rounded-xl border bg-white px-4 py-3 text-sm text-slate-900 outline-none ring-brand-500/30 focus:ring-2 ${
+                    sidebarErrors.fullName ? 'border-rose-400/70' : 'border-slate-200'
+                  }`}
                   placeholder="Full Name"
                 />
+                {sidebarErrors.fullName ? <div className="mt-1 text-xs font-medium text-rose-600">{sidebarErrors.fullName}</div> : null}
               </div>
               <div>
                 <div className="text-xs font-semibold text-slate-500">Phone Number</div>
                 <input
-                  className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none ring-brand-500/30 focus:ring-2"
+                  ref={phoneRef}
+                  value={sidebarForm.phone}
+                  onChange={(e) => {
+                    const val = e.target.value
+                    setSidebarForm((p) => ({ ...p, phone: val }))
+                    setSidebarErrors((p) => ({ ...p, phone: undefined }))
+                  }}
+                  className={`mt-2 w-full rounded-xl border bg-white px-4 py-3 text-sm text-slate-900 outline-none ring-brand-500/30 focus:ring-2 ${
+                    sidebarErrors.phone ? 'border-rose-400/70' : 'border-slate-200'
+                  }`}
                   placeholder="Contact No"
                 />
+                {sidebarErrors.phone ? <div className="mt-1 text-xs font-medium text-rose-600">{sidebarErrors.phone}</div> : null}
               </div>
               <div>
                 <div className="text-xs font-semibold text-slate-500">Email</div>
                 <input
-                  className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none ring-brand-500/30 focus:ring-2"
+                  ref={emailRef}
+                  value={sidebarForm.email}
+                  onChange={(e) => {
+                    const val = e.target.value
+                    setSidebarForm((p) => ({ ...p, email: val }))
+                    setSidebarErrors((p) => ({ ...p, email: undefined }))
+                  }}
+                  className={`mt-2 w-full rounded-xl border bg-white px-4 py-3 text-sm text-slate-900 outline-none ring-brand-500/30 focus:ring-2 ${
+                    sidebarErrors.email ? 'border-rose-400/70' : 'border-slate-200'
+                  }`}
                   placeholder="Email"
                 />
+                {sidebarErrors.email ? <div className="mt-1 text-xs font-medium text-rose-600">{sidebarErrors.email}</div> : null}
               </div>
               <div>
                 <div className="text-xs font-semibold text-slate-500">Message/Query</div>
                 <textarea
+                  ref={messageRef}
                   rows={4}
-                  className="mt-2 w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none ring-brand-500/30 focus:ring-2"
+                  value={sidebarForm.message}
+                  onChange={(e) => {
+                    const val = e.target.value
+                    setSidebarForm((p) => ({ ...p, message: val }))
+                    setSidebarErrors((p) => ({ ...p, message: undefined }))
+                  }}
+                  className={`mt-2 w-full resize-none rounded-xl border bg-white px-4 py-3 text-sm text-slate-900 outline-none ring-brand-500/30 focus:ring-2 ${
+                    sidebarErrors.message ? 'border-rose-400/70' : 'border-slate-200'
+                  }`}
                   placeholder="Message/Query"
                 />
+                {sidebarErrors.message ? <div className="mt-1 text-xs font-medium text-rose-600">{sidebarErrors.message}</div> : null}
               </div>
             </div>
 
             <button
               type="button"
               onClick={() => {
+                const nextErrors = validateSidebar(sidebarForm)
+                setSidebarErrors(nextErrors)
+
+                if (Object.keys(nextErrors).length) {
+                  toast.error(Object.values(nextErrors)[0] || 'Please fill all the boxes')
+                  const first = Object.keys(nextErrors)[0]
+                  if (first === 'fullName') fullNameRef.current?.focus()
+                  else if (first === 'phone') phoneRef.current?.focus()
+                  else if (first === 'email') emailRef.current?.focus()
+                  else if (first === 'message') messageRef.current?.focus()
+                  return
+                }
+
                 toast.success('Submitted')
-                if (onOpenModal) onOpenModal()
+                setSidebarForm({ fullName: '', phone: '', email: '', message: '' })
               }}
               className="mt-6 w-full rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
             >

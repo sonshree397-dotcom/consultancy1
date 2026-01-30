@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import Hero from '../components/Hero'
 import CountUp from '../components/CountUp'
@@ -7,6 +8,19 @@ import SocialLinks from '../components/SocialLinks'
 
 function Home({ onOpenModal }) {
   const [showTop, setShowTop] = useState(false)
+  const [openService, setOpenService] = useState(null)
+  const [homeContact, setHomeContact] = useState({ fullName: '', email: '', phone: '', destination: '' })
+  const [homeContactErrors, setHomeContactErrors] = useState({})
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [newsletterError, setNewsletterError] = useState('')
+  const [newsletterTouched, setNewsletterTouched] = useState(false)
+
+  const navigate = useNavigate()
+
+  const homeFullNameRef = useRef(null)
+  const homeEmailRef = useRef(null)
+  const homePhoneRef = useRef(null)
+  const homeDestinationRef = useRef(null)
 
   useEffect(() => {
     const onScroll = () => setShowTop(window.scrollY > 700)
@@ -17,6 +31,41 @@ function Home({ onOpenModal }) {
 
   const onApplyNow = () => {
     toast.success('Application started. We will contact you shortly.')
+  }
+
+  const validateHomeContact = (v) => {
+    const next = {}
+    if (!v.fullName.trim()) next.fullName = 'Full name is required.'
+
+    if (!v.email.trim()) next.email = 'Email is required.'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) next.email = 'Enter a valid email.'
+
+    const phone = v.phone.replace(/\s+/g, '')
+    if (!phone) next.phone = 'Contact number is required.'
+    else if (!/^\d+$/.test(phone)) next.phone = 'Contact number must be numeric.'
+    else if (phone.length !== 10) next.phone = 'Enter a 10-digit contact number.'
+
+    if (!v.destination.trim()) next.destination = 'Destination is required.'
+    return next
+  }
+
+  const validateNewsletterEmail = (v) => {
+    const email = v.trim()
+    if (!email) return 'Email is required.'
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Enter a valid email.'
+    return ''
+  }
+
+  const onNewsletterSubmit = (e) => {
+    e.preventDefault()
+    setNewsletterTouched(true)
+    const err = validateNewsletterEmail(newsletterEmail)
+    setNewsletterError(err)
+    if (err) return
+    toast.success('Subscribed')
+    setNewsletterEmail('')
+    setNewsletterError('')
+    setNewsletterTouched(false)
   }
 
   return (
@@ -126,14 +175,17 @@ function Home({ onOpenModal }) {
             {
               title: 'Test Preparation',
               desc: 'Preparation for IELTS, PTE, SAT and other tests with focused guidance.',
+              more: 'IELTS / PTE classes, practice materials, mock tests, and personalised feedback to improve score and confidence.',
             },
             {
               title: 'Course Selection',
               desc: 'Choose the right course and university for your profile and goals.',
+              more: 'Profile evaluation, country & city selection, shortlisting universities, and intake planning based on budget and career goals.',
             },
             {
               title: 'Documentation',
               desc: 'Application documents, SOP, financials, and checklist-driven support.',
+              more: 'SOP/CV review, academic document preparation, financial guidance, and step-by-step checklist support for a complete application.',
             },
           ].map((c) => (
             <motion.div
@@ -144,10 +196,28 @@ function Home({ onOpenModal }) {
             >
               <div className="text-base font-semibold text-white">{c.title}</div>
               <div className="mt-2 text-sm text-white/70">{c.desc}</div>
-              <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-300">
+              <button
+                type="button"
+                onClick={() => setOpenService((v) => (v === c.title ? null : c.title))}
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-300 hover:text-brand-200"
+              >
                 Learn more
                 <span aria-hidden="true">→</span>
-              </div>
+              </button>
+
+              <AnimatePresence initial={false}>
+                {openService === c.title ? (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.25, ease: 'easeOut' }}
+                    className="mt-3 overflow-hidden text-sm text-white/70"
+                  >
+                    {c.more}
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
             </motion.div>
           ))}
         </div>
@@ -243,26 +313,27 @@ function Home({ onOpenModal }) {
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
             {[
-              { name: 'United States', img: '/tokyo.webp' },
-              { name: 'Canada', img: '/uk.jpg' },
-              { name: 'Australia', img: '/australia.jpg' },
-              { name: 'New Zealand', img: '/tokyo.webp' },
-              { name: 'Ireland', img: '/uk.jpg' },
-              { name: 'United Kingdom', img: '/uk.jpg' },
+              { name: 'United States', img: '/tokyo.webp', to: '/study-in-usa' },
+              { name: 'Canada', img: '/uk.jpg', to: '/study-in-canada' },
+              { name: 'Australia', img: '/australia.jpg', to: '/study-in-australia' },
+              { name: 'New Zealand', img: '/tokyo.webp', to: '/study-in-new-zealand' },
+              { name: 'Ireland', img: '/uk.jpg', to: '/study-in-ireland' },
+              { name: 'United Kingdom', img: '/uk.jpg', to: '/study-in-uk' },
             ].map((d) => (
-              <motion.a
+              <motion.button
                 key={d.name}
-                href="#contact"
+                type="button"
+                onClick={() => navigate(d.to)}
                 whileHover={{ y: -6 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-                className="group relative overflow-hidden rounded-2xl border border-slate-200"
+                className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-transparent p-0 text-left"
               >
                 <img src={d.img} alt="" className="h-44 w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
                 <div className="absolute inset-0 grid place-items-center">
                   <div className="text-lg font-semibold text-white">{d.name}</div>
                 </div>
-              </motion.a>
+              </motion.button>
             ))}
           </div>
         </div>
@@ -325,17 +396,101 @@ function Home({ onOpenModal }) {
               <div className="text-sm font-semibold text-white/80">Contact Us in 3 seconds!</div>
               <div className="mt-2 text-3xl font-extrabold text-white">We will get back to you</div>
               <div className="mt-6 grid gap-3">
-                {['Full Name', 'Email', 'Contact No', 'Destination'].map((ph) => (
+                <div>
                   <input
-                    key={ph}
-                    placeholder={ph}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none ring-brand-400/40 focus:ring-2"
+                    ref={homeFullNameRef}
+                    placeholder="Full Name"
+                    value={homeContact.fullName}
+                    onChange={(e) => {
+                      const val = e.target.value
+                      setHomeContact((p) => ({ ...p, fullName: val }))
+                      setHomeContactErrors((p) => ({ ...p, fullName: undefined }))
+                    }}
+                    className={`w-full rounded-xl border bg-white/5 px-4 py-3 text-sm text-white outline-none ring-brand-400/40 focus:ring-2 ${
+                      homeContactErrors.fullName ? 'border-rose-400/70' : 'border-white/10'
+                    }`}
                   />
-                ))}
+                  {homeContactErrors.fullName ? (
+                    <div className="mt-1 text-xs font-medium text-rose-300">{homeContactErrors.fullName}</div>
+                  ) : null}
+                </div>
+
+                <div>
+                  <input
+                    ref={homeEmailRef}
+                    placeholder="Email"
+                    value={homeContact.email}
+                    onChange={(e) => {
+                      const val = e.target.value
+                      setHomeContact((p) => ({ ...p, email: val }))
+                      setHomeContactErrors((p) => ({ ...p, email: undefined }))
+                    }}
+                    className={`w-full rounded-xl border bg-white/5 px-4 py-3 text-sm text-white outline-none ring-brand-400/40 focus:ring-2 ${
+                      homeContactErrors.email ? 'border-rose-400/70' : 'border-white/10'
+                    }`}
+                  />
+                  {homeContactErrors.email ? (
+                    <div className="mt-1 text-xs font-medium text-rose-300">{homeContactErrors.email}</div>
+                  ) : null}
+                </div>
+
+                <div>
+                  <input
+                    ref={homePhoneRef}
+                    placeholder="Contact No"
+                    value={homeContact.phone}
+                    onChange={(e) => {
+                      const val = e.target.value
+                      setHomeContact((p) => ({ ...p, phone: val }))
+                      setHomeContactErrors((p) => ({ ...p, phone: undefined }))
+                    }}
+                    className={`w-full rounded-xl border bg-white/5 px-4 py-3 text-sm text-white outline-none ring-brand-400/40 focus:ring-2 ${
+                      homeContactErrors.phone ? 'border-rose-400/70' : 'border-white/10'
+                    }`}
+                  />
+                  {homeContactErrors.phone ? (
+                    <div className="mt-1 text-xs font-medium text-rose-300">{homeContactErrors.phone}</div>
+                  ) : null}
+                </div>
+
+                <div>
+                  <input
+                    ref={homeDestinationRef}
+                    placeholder="Destination"
+                    value={homeContact.destination}
+                    onChange={(e) => {
+                      const val = e.target.value
+                      setHomeContact((p) => ({ ...p, destination: val }))
+                      setHomeContactErrors((p) => ({ ...p, destination: undefined }))
+                    }}
+                    className={`w-full rounded-xl border bg-white/5 px-4 py-3 text-sm text-white outline-none ring-brand-400/40 focus:ring-2 ${
+                      homeContactErrors.destination ? 'border-rose-400/70' : 'border-white/10'
+                    }`}
+                  />
+                  {homeContactErrors.destination ? (
+                    <div className="mt-1 text-xs font-medium text-rose-300">{homeContactErrors.destination}</div>
+                  ) : null}
+                </div>
               </div>
               <button
                 type="button"
-                onClick={() => toast.success('Message sent')}
+                onClick={() => {
+                  const nextErrors = validateHomeContact(homeContact)
+                  setHomeContactErrors(nextErrors)
+
+                  if (Object.keys(nextErrors).length) {
+                    toast.error(Object.values(nextErrors)[0] || 'Please fill all the boxes')
+                    const first = Object.keys(nextErrors)[0]
+                    if (first === 'fullName') homeFullNameRef.current?.focus()
+                    else if (first === 'email') homeEmailRef.current?.focus()
+                    else if (first === 'phone') homePhoneRef.current?.focus()
+                    else if (first === 'destination') homeDestinationRef.current?.focus()
+                    return
+                  }
+
+                  toast.success('Message sent')
+                  setHomeContact({ fullName: '', email: '', phone: '', destination: '' })
+                }}
                 className="mt-5 inline-flex items-center justify-center rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-slate-950 shadow-soft transition hover:bg-brand-400"
               >
                 Submit
@@ -392,21 +547,6 @@ function Home({ onOpenModal }) {
         </div>
       </section>
 
-      <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-10">
-          <div className="grid grid-cols-2 items-center gap-6 opacity-80 md:grid-cols-5">
-            {['Holmes', 'CQ University', 'VIT', 'JCU', 'More Partners'].map((p) => (
-              <div
-                key={p}
-                className="grid h-14 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-sm font-semibold text-slate-600"
-              >
-                {p}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <footer className="bg-slate-950">
         <div className="mx-auto max-w-6xl px-4 py-14">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
@@ -457,16 +597,33 @@ function Home({ onOpenModal }) {
             <div>
               <div className="text-sm font-semibold text-white">Newsletter Signup</div>
               <div className="mt-3 text-sm text-white/70">Enter your email address to get latest updates and offers.</div>
-              <div className="mt-4 flex overflow-hidden rounded-xl border border-white/10 bg-white/5">
-                <input className="w-full bg-transparent px-4 py-2 text-sm text-white outline-none" placeholder="Email address" />
-                <button
-                  type="button"
-                  onClick={() => toast.success('Subscribed')}
-                  className="bg-brand-500 px-4 text-sm font-semibold text-slate-950"
+              <form className="mt-4 grid gap-2" onSubmit={onNewsletterSubmit}>
+                <div
+                  className={`flex overflow-hidden rounded-xl border bg-white/5 ${newsletterError ? 'border-red-400/60' : 'border-white/10'}`}
                 >
-                  →
-                </button>
-              </div>
+                  <input
+                    className="w-full bg-transparent px-4 py-2 text-sm text-white outline-none"
+                    placeholder="Email address"
+                    type="email"
+                    value={newsletterEmail}
+                    onChange={(e) => {
+                      const next = e.target.value
+                      setNewsletterEmail(next)
+                      if (newsletterTouched) setNewsletterError(validateNewsletterEmail(next))
+                    }}
+                    onBlur={() => {
+                      setNewsletterTouched(true)
+                      setNewsletterError(validateNewsletterEmail(newsletterEmail))
+                    }}
+                    aria-label="Email address"
+                  />
+                  <button type="submit" className="bg-brand-500 px-4 text-sm font-semibold text-slate-950">
+                    →
+                  </button>
+                </div>
+
+                {newsletterError ? <div className="text-xs text-red-400">{newsletterError}</div> : null}
+              </form>
             </div>
           </div>
 
@@ -481,10 +638,15 @@ function Home({ onOpenModal }) {
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         initial={false}
         animate={{ opacity: showTop ? 1 : 0, y: showTop ? 0 : 10, pointerEvents: showTop ? 'auto' : 'none' }}
-        className="fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full bg-brand-500 text-slate-950 shadow-soft"
+        whileHover={{ scale: 1.06 }}
+        whileTap={{ scale: 0.96 }}
+        className="fixed bottom-6 right-6 z-40 grid h-12 w-12 place-items-center rounded-full bg-brand-500 text-slate-950 shadow-soft ring-1 ring-white/10 transition hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-300/50"
         aria-label="Back to top"
       >
-        ↑
+        <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+          <path d="M12 19V5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path d="M6 11l6-6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </motion.button>
     </motion.main>
   )

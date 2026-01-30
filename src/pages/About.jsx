@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import SocialLinks from '../components/SocialLinks'
 
@@ -11,6 +12,29 @@ function About() {
   const stagger = {
     hidden: {},
     show: { transition: { staggerChildren: 0.08 } },
+  }
+
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [newsletterError, setNewsletterError] = useState('')
+  const [newsletterTouched, setNewsletterTouched] = useState(false)
+
+  const validateNewsletterEmail = (v) => {
+    const email = v.trim()
+    if (!email) return 'Email is required.'
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Enter a valid email.'
+    return ''
+  }
+
+  const onNewsletterSubmit = (e) => {
+    e.preventDefault()
+    setNewsletterTouched(true)
+    const err = validateNewsletterEmail(newsletterEmail)
+    setNewsletterError(err)
+    if (err) return
+    toast.success('Subscribed')
+    setNewsletterEmail('')
+    setNewsletterError('')
+    setNewsletterTouched(false)
   }
 
   const values = [
@@ -251,16 +275,33 @@ function About() {
             <div>
               <div className="text-sm font-semibold text-white">Newsletter Signup</div>
               <div className="mt-3 text-sm text-white/70">Enter your email address to get latest updates and offers.</div>
-              <div className="mt-4 flex overflow-hidden rounded-xl border border-white/10 bg-white/5">
-                <input className="w-full bg-transparent px-4 py-2 text-sm text-white outline-none" placeholder="Email address" />
-                <button
-                  type="button"
-                  onClick={() => toast.success('Subscribed')}
-                  className="bg-brand-500 px-4 text-sm font-semibold text-slate-950"
+              <form className="mt-4 grid gap-2" onSubmit={onNewsletterSubmit}>
+                <div
+                  className={`flex overflow-hidden rounded-xl border bg-white/5 ${newsletterError ? 'border-red-400/60' : 'border-white/10'}`}
                 >
-                  →
-                </button>
-              </div>
+                  <input
+                    className="w-full bg-transparent px-4 py-2 text-sm text-white outline-none"
+                    placeholder="Email address"
+                    type="email"
+                    value={newsletterEmail}
+                    onChange={(e) => {
+                      const next = e.target.value
+                      setNewsletterEmail(next)
+                      if (newsletterTouched) setNewsletterError(validateNewsletterEmail(next))
+                    }}
+                    onBlur={() => {
+                      setNewsletterTouched(true)
+                      setNewsletterError(validateNewsletterEmail(newsletterEmail))
+                    }}
+                    aria-label="Email address"
+                  />
+                  <button type="submit" className="bg-brand-500 px-4 text-sm font-semibold text-slate-950">
+                    →
+                  </button>
+                </div>
+
+                {newsletterError ? <div className="text-xs text-red-400">{newsletterError}</div> : null}
+              </form>
             </div>
           </div>
 
