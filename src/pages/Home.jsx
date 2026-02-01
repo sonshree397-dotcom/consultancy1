@@ -199,7 +199,13 @@ function Home({ onOpenModal }) {
               <div className="mt-2 text-sm text-white/70">{c.desc}</div>
               <button
                 type="button"
-                onClick={() => setOpenService((v) => (v === c.title ? null : c.title))}
+                onClick={() => {
+                  if (c.title === 'Test Preparation') {
+                    navigate('/test-preparation')
+                    return
+                  }
+                  setOpenService((v) => (v === c.title ? null : c.title))
+                }}
                 className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-300 hover:text-brand-200"
               >
                 Learn more

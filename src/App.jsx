@@ -18,6 +18,10 @@ import StudyInUK from './pages/StudyInUK'
 import StudyInNewZealand from './pages/StudyInNewZealand'
 import StudyInUSA from './pages/StudyInUSA'
 import StudyAbroadApplicationForm from './pages/StudyAbroadApplicationForm'
+import TestPreparation from './pages/TestPreparation'
+import EducationCounseling from './pages/EducationCounseling'
+import DocumentationGuidance from './pages/DocumentationGuidance'
+import CareerCounseling from './pages/CareerCounseling'
 
 function App() {
   const [open, setOpen] = useState(false)
@@ -88,6 +92,10 @@ function App() {
           <Route path="/location" element={<Location />} />
           <Route path="/news-updates" element={<NewsUpdates />} />
           <Route path="/study-abroad-application" element={<StudyAbroadApplicationForm />} />
+          <Route path="/test-preparation" element={<TestPreparation />} />
+          <Route path="/education-counseling" element={<EducationCounseling onOpenModal={openModal} />} />
+          <Route path="/documentation-guidance" element={<DocumentationGuidance onOpenModal={openModal} />} />
+          <Route path="/career-counseling" element={<CareerCounseling onOpenModal={openModal} />} />
           <Route path="/contact" element={<Contact onOpenModal={openModal} />} />
           <Route path="/study-in-australia" element={<StudyInAustralia onOpenModal={openModal} />} />
           <Route path="/study-in-canada" element={<StudyInCanada onOpenModal={openModal} />} />

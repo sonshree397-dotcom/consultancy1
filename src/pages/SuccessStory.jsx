@@ -44,7 +44,7 @@ function SuccessStory() {
                     <br />
                     for guidance.
                   </p>
-                </div>
+                </div>  
 
                 <motion.div
                   initial="hidden"

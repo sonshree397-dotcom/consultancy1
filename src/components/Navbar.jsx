@@ -58,10 +58,10 @@ function Navbar() {
   ]
 
   const serviceItems = [
-    { label: 'TEST PREPARATION', href: '#test-prep' },
-    { label: 'EDUCATION COUNSELING', href: '#services' },
-    { label: 'DOCUMENTATION GUIDANCE', href: '#services' },
-    { label: 'CAREER COUNSELING', href: '#services' },
+    { label: 'TEST PREPARATION', href: '/test-preparation' },
+    { label: 'EDUCATION COUNSELING', href: '/education-counseling' },
+    { label: 'DOCUMENTATION GUIDANCE', href: '/documentation-guidance' },
+    { label: 'CAREER COUNSELING', href: '/career-counseling' },
   ]
 
   const onNav = (href) => {

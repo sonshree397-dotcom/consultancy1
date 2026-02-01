@@ -7,18 +7,21 @@ function DocumentationGuidance({ onOpenModal }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 8 }}
       transition={{ duration: 0.22 }}
-      className="bg-white text-slate-900"
+      className="bg-slate-50 text-slate-900"
     >
       <section className="relative overflow-hidden bg-slate-950">
         <div className="absolute inset-0">
           <img src="/uk.jpg" alt="" className="h-full w-full object-cover opacity-55" />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-slate-950/40 to-slate-950/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/75 via-slate-950/45 to-slate-950/25" />
+          <div className="absolute inset-0 opacity-90 [background:radial-gradient(circle_at_18%_22%,rgba(16,185,129,0.35),transparent_45%),radial-gradient(circle_at_78%_30%,rgba(56,189,248,0.22),transparent_50%)]" />
         </div>
 
         <div className="relative mx-auto max-w-6xl px-4 py-24 md:py-32">
           <div className="text-center">
             <div className="text-sm font-semibold tracking-wide text-white/70">Services</div>
-            <h1 className="mt-3 text-4xl font-extrabold text-white md:text-6xl">Documentation Guidance</h1>
+            <h1 className="mt-3 text-4xl font-extrabold text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)] md:text-6xl">
+              Documentation Guidance
+            </h1>
             <div className="mt-4 text-sm text-white/70">
               SOP, academic documents, financials, and visa-ready documentation—organized and error-free.
             </div>
@@ -29,6 +32,7 @@ function DocumentationGuidance({ onOpenModal }) {
       <section className="mx-auto max-w-6xl px-4 py-14">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2">
+            <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm md:p-9">
             <div className="text-2xl font-extrabold text-slate-900">What we prepare & review</div>
             <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {[ 
@@ -39,7 +43,7 @@ function DocumentationGuidance({ onOpenModal }) {
                 { t: 'Financial Documents', d: 'Savings, income, education loan, and sponsor proofs (as applicable).' },
                 { t: 'Visa File Checklist', d: 'A checklist-based process to reduce missing or incorrect documents.' },
               ].map((c) => (
-                <div key={c.t} className="rounded-2xl border border-slate-200 bg-white p-6">
+                <div key={c.t} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                   <div className="text-sm font-bold text-slate-900">{c.t}</div>
                   <div className="mt-2 text-sm leading-relaxed text-slate-600">{c.d}</div>
                 </div>
@@ -78,10 +82,11 @@ function DocumentationGuidance({ onOpenModal }) {
                 ))}
               </div>
             </div>
+            </div>
           </div>
 
           <aside className="lg:col-span-1">
-            <div className="sticky top-28 rounded-2xl border border-brand-600/40 bg-white p-6 shadow">
+            <div className="sticky top-28 rounded-3xl border border-emerald-200 bg-white p-6 shadow-lg shadow-emerald-100/60">
               <div className="text-xl font-extrabold text-slate-900">Need a checklist?</div>
               <div className="mt-3 text-sm text-slate-600">We’ll share a step-by-step document plan for your destination.</div>
               <button
