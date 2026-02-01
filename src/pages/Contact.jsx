@@ -278,9 +278,14 @@ function Contact({ onOpenModal: _onOpenModal }) {
             <div>
               <div className="text-sm font-semibold text-white">Services</div>
               <div className="mt-3 grid gap-2 text-sm text-white/70">
-                {['IELTS Preparation', 'PTE Preparation', 'Study in Australia', 'Study in Canada'].map((l) => (
-                  <a key={l} href="#" className="hover:text-white">
-                    {l}
+                {[
+                  { t: 'IELTS Preparation', h: '/test-preparation#ielts' },
+                  { t: 'PTE Preparation', h: '/test-preparation#pte' },
+                  { t: 'Study in Australia', h: '/study-in-australia' },
+                  { t: 'Study in Canada', h: '/study-in-canada' },
+                ].map((l) => (
+                  <a key={l.t} href={l.h} className="hover:text-white">
+                    {l.t}
                   </a>
                 ))}
               </div>

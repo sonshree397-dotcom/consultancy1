@@ -1,5 +1,6 @@
 import Navbar from './Navbar'
 import Topbar from './Topbar'
+import ScrollToTopButton from './ScrollToTopButton'
 
 function Layout({ children, onOpenModal }) {
   return (
@@ -7,6 +8,7 @@ function Layout({ children, onOpenModal }) {
       <Topbar />
       <Navbar onOpenModal={onOpenModal} />
       {children}
+      <ScrollToTopButton />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import Hero from '../components/Hero'
@@ -8,7 +8,6 @@ import SocialLinks from '../components/SocialLinks'
 import SuccessStoriesGrid from '../components/SuccessStoriesGrid'
 
 function Home({ onOpenModal }) {
-  const [showTop, setShowTop] = useState(false)
   const [openService, setOpenService] = useState(null)
   const [homeContact, setHomeContact] = useState({ fullName: '', email: '', phone: '', destination: '' })
   const [homeContactErrors, setHomeContactErrors] = useState({})
@@ -22,13 +21,6 @@ function Home({ onOpenModal }) {
   const homeEmailRef = useRef(null)
   const homePhoneRef = useRef(null)
   const homeDestinationRef = useRef(null)
-
-  useEffect(() => {
-    const onScroll = () => setShowTop(window.scrollY > 700)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   const onApplyNow = () => {
     navigate('/study-abroad-application')
@@ -629,9 +621,14 @@ function Home({ onOpenModal }) {
             <div>
               <div className="text-sm font-semibold text-white">Services</div>
               <div className="mt-3 grid gap-2 text-sm text-white/70">
-                {['IELTS Preparation', 'PTE Preparation', 'Study in Australia', 'Study in Canada'].map((l) => (
-                  <a key={l} href="#" className="hover:text-white">
-                    {l}
+                {[
+                  { t: 'IELTS Preparation', h: '/test-preparation#ielts' },
+                  { t: 'PTE Preparation', h: '/test-preparation#pte' },
+                  { t: 'Study in Australia', h: '/study-in-australia' },
+                  { t: 'Study in Canada', h: '/study-in-canada' },
+                ].map((l) => (
+                  <a key={l.t} href={l.h} className="hover:text-white">
+                    {l.t}
                   </a>
                 ))}
               </div>
@@ -641,10 +638,10 @@ function Home({ onOpenModal }) {
               <div className="text-sm font-semibold text-white">Quick Links</div>
               <div className="mt-3 grid gap-2 text-sm text-white/70">
                 {[
-                  { t: 'About Us', h: '#about' },
-                  { t: 'Services', h: '#services' },
-                  { t: 'Events', h: '#events' },
-                  { t: 'Contact', h: '#contact' },
+                  { t: 'About Us', h: '/#about' },
+                  { t: 'Services', h: '/#services' },
+                  { t: 'Events', h: '/#events' },
+                  { t: 'Contact', h: '/#contact' },
                 ].map((l) => (
                   <a key={l.t} href={l.h} className="hover:text-white">
                     {l.t}
@@ -692,21 +689,6 @@ function Home({ onOpenModal }) {
         </div>
       </footer>
 
-      <motion.button
-        type="button"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        initial={false}
-        animate={{ opacity: showTop ? 1 : 0, y: showTop ? 0 : 10, pointerEvents: showTop ? 'auto' : 'none' }}
-        whileHover={{ scale: 1.06 }}
-        whileTap={{ scale: 0.96 }}
-        className="fixed bottom-6 right-6 z-40 grid h-12 w-12 place-items-center rounded-full bg-brand-500 text-slate-950 shadow-soft ring-1 ring-white/10 transition hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-300/50"
-        aria-label="Back to top"
-      >
-        <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
-          <path d="M12 19V5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          <path d="M6 11l6-6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </motion.button>
     </motion.main>
   )
 }

@@ -47,7 +47,7 @@ function StudyInAustralia() {
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 8 }}
-      transition={{ type: 'spring', stiffness: 90, damping: 18, mass: 0.9 }}
+      transition={{ duration: 0.22 }}
       className="bg-white text-slate-900"
     >
       <section className="relative overflow-hidden bg-slate-950">
@@ -431,9 +431,14 @@ function StudyInAustralia() {
             <div>
               <div className="text-sm font-semibold text-white">Services</div>
               <div className="mt-3 grid gap-2 text-sm text-white/70">
-                {['IELTS Preparation', 'PTE Preparation', 'Study in Australia', 'Study in Canada'].map((l) => (
-                  <a key={l} href="#" className="hover:text-white">
-                    {l}
+                {[
+                  { t: 'IELTS Preparation', h: '/test-preparation#ielts' },
+                  { t: 'PTE Preparation', h: '/test-preparation#pte' },
+                  { t: 'Study in Australia', h: '/study-in-australia' },
+                  { t: 'Study in Canada', h: '/study-in-canada' },
+                ].map((l) => (
+                  <a key={l.t} href={l.h} className="hover:text-white">
+                    {l.t}
                   </a>
                 ))}
               </div>

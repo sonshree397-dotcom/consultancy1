@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion'
+import toast from 'react-hot-toast'
+import SocialLinks from '../components/SocialLinks'
 
 function DocumentationGuidance({ onOpenModal }) {
   return (
@@ -106,6 +108,74 @@ function DocumentationGuidance({ onOpenModal }) {
           </aside>
         </div>
       </section>
+
+      <footer className="bg-slate-950 text-white">
+        <div className="mx-auto max-w-6xl px-4 py-14">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+            <div>
+              <a href="/#home" className="inline-flex items-center">
+                <img
+                  src="/logo.png"
+                  alt="GIEC abroad consultant"
+                  className="h-12 w-auto select-none opacity-95 transition hover:opacity-100 hover:brightness-110 hover:drop-shadow-[0_0_18px_rgba(16,185,129,0.55)]"
+                  draggable={false}
+                />
+              </a>
+              <div className="mt-3 text-sm text-white/70">
+                We help you with test preparation, course selection, documentation, and visa processing — from start to finish.
+              </div>
+              <div className="mt-4">
+                <SocialLinks />
+              </div>
+            </div>
+
+            <div>
+              <div className="text-sm font-semibold text-white">Services</div>
+              <div className="mt-3 grid gap-2 text-sm text-white/70">
+                {[
+                  { t: 'IELTS Preparation', h: '/test-preparation#ielts' },
+                  { t: 'PTE Preparation', h: '/test-preparation#pte' },
+                  { t: 'Study in Australia', h: '/study-in-australia' },
+                  { t: 'Study in Canada', h: '/study-in-canada' },
+                ].map((l) => (
+                  <a key={l.t} href={l.h} className="hover:text-white">
+                    {l.t}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="text-sm font-semibold text-white">Quick Links</div>
+              <div className="mt-3 grid gap-2 text-sm text-white/70">
+                {[
+                  { t: 'Home', h: '/#home' },
+                  { t: 'About Us', h: '/#about' },
+                  { t: 'Services', h: '/#services' },
+                  { t: 'Contact', h: '/#contact' },
+                ].map((l) => (
+                  <a key={l.t} href={l.h} className="hover:text-white">
+                    {l.t}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="text-sm font-semibold text-white">Newsletter Signup</div>
+              <div className="mt-3 text-sm text-white/70">Enter your email address to get latest updates and offers.</div>
+              <div className="mt-4 flex overflow-hidden rounded-xl border border-white/10 bg-white/5">
+                <input className="w-full bg-transparent px-4 py-2 text-sm text-white outline-none" placeholder="Email address" />
+                <button type="button" onClick={() => toast.success('Subscribed')} className="bg-brand-500 px-4 text-sm font-semibold text-slate-950">
+                  →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/60">© {new Date().getFullYear()} GIEC. All rights reserved. Powered by Gecko Works Nepal</div>
+        </div>
+      </footer>
     </motion.main>
   )
 }
