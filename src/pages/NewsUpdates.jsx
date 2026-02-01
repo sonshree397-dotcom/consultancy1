@@ -45,7 +45,7 @@ function NewsUpdates() {
         title: 'Why Choose Australia',
         body: 'Thinking about studying abroad? Australia might just be your perfect destination! This sun-soaked country offers more than just kangaroos and beautiful beaches. Let\'s dive into...',
         content:
-          'Australia is known for quality education, practical learning, multicultural campuses, and strong student support services.\n\nWhy students choose Australia:\n- Globally recognised universities and colleges\n- Flexible course options and intakes\n- Work opportunities during and after studies\n- Safe cities and strong Nepali community\n\nWe help you plan your intake, documentation, finances, and visa process end-to-end.',
+          'Thinking about studying abroad? Australia might just be your perfect destination! This sun-soaked country offers more than just kangaroos and beautiful beaches. Let\'s dive into why choosing to study in Australia could be one of the best decisions you\'ll ever make.\n\nWorld-Class Education at Your Fingertips\nAustralia isn\'t just about surfing and barbecues. It\'s home to some of the best universities in the world. Imagine learning from top-notch professors in state-of-the-art facilities. Australian universities are known for their high-quality education and research opportunities. You\'ll be getting a degree that\'s respected globally, opening doors to exciting career prospects. Not just university degree, Australia is also home to Vocational and Training Education providing courses to meet the labor market needs.\n\nA Warm Welcome Awaits You\nFeeling nervous about studying in a new country? Don\'t be! Australians are famous for their friendly and laid-back nature. You\'ll find yourself in a welcoming environment where diversity is celebrated. With students from all over the world, you\'ll make friends from different cultures and broaden your horizons.\n\nWork While You Learn\nHere\'s some great news - you can work part-time while studying in Australia. This means you can earn some extra cash (and valuable work experience), and practice your English skills in real-life situations. It\'s a win-win situation that helps you become more independent and job-ready.\n\nAdventure Around Every Corner\nAustralia is a playground for adventure seekers. From the stunning Great Barrier Reef to the vast Outback, there\'s always something exciting to explore. Imagine spending your weekends surfing, hiking, or discovering hidden gems in vibrant cities. Your study breaks will never be boring!\n\nA Safe and High-Quality Lifestyle\nWorried about safety? Australia\'s got you covered. It\'s known for its high standard of living and safe environment for international students. You\'ll enjoy excellent healthcare, efficient public transport, and a clean, green environment. It\'s the perfect place to focus on your studies without any worries.\n\nEnglish Language Immersion\nWant to improve your English? Studying in Australia gives you the perfect opportunity to immerse yourself in the language. You\'ll be speaking like a local in no time, boosting your confidence and communication skills.\n\nDiverse Course Options\nWhatever you\'re passionate about, you\'ll find a course that fits your dreams. Australian universities offer a wide range of programs, from traditional subjects to cutting-edge fields. Whether you\'re into marine biology, digital marketing, or anything in between, there\'s a perfect course waiting for you.\n\nMulticultural Melting Pot\nAustralia is like a colorful tapestry of cultures. You\'ll experience a rich blend of traditions, foods, and festivals from all over the world. It\'s a chance to broaden your perspective and make lifelong friends from diverse backgrounds.\n\nSupport Every Step of the Way\nFeeling overwhelmed? Don\'t worry! Australian universities offer excellent support services for international students. From help with accommodation to academic guidance, you\'ll always have someone to turn to.\n\nA Stepping Stone to Your Dream Career\nMany Australian degrees offer internships or work placements. This hands-on experience is invaluable, giving you a taste of your future career and helping you build a professional network even before you graduate.\n\nChoosing to study in Australia isn\'t just about getting a degree. It\'s about embarking on a life-changing adventure. You\'ll grow personally and professionally, make amazing memories, and set yourself up for a bright future. So, why not give it a go? Australia is waiting to welcome you with open arms and endless opportunities!\n\nDiscover Study in Australia process at our website. Speak to our Counselors via Whatsapp.',
       },
     ],
     [],
@@ -223,12 +223,19 @@ function NewsUpdates() {
         title={activeItem?.title || 'Learn More'}
         onClose={() => setActiveItem(null)}
       >
-        <div className="text-sm leading-relaxed text-white/80">
+        <div className="max-h-[70vh] overflow-y-auto pr-1">
           {(activeItem?.content || activeItem?.body || '')
             .split('\n\n')
             .filter(Boolean)
-            .map((p) => (
-              <div key={p} className="mb-3 last:mb-0 whitespace-pre-line">
+            .map((p, idx) => (
+              <div
+                key={`${idx}-${p.slice(0, 24)}`}
+                className={
+                  p.length <= 50 && !p.includes('.')
+                    ? 'mb-3 text-base font-semibold text-white'
+                    : 'mb-3 whitespace-pre-line text-sm leading-relaxed text-white/80'
+                }
+              >
                 {p}
               </div>
             ))}
