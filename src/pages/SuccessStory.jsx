@@ -5,6 +5,18 @@ import SocialLinks from '../components/SocialLinks'
 function SuccessStory() {
   const navigate = useNavigate()
 
+  const countries = [
+    { label: 'NEW ZEALAND', code: 'nz' },
+    { label: 'AUSTRALIA', code: 'au' },
+    { label: 'CANADA', code: 'ca' },
+    { label: 'IRELAND', code: 'ie' },
+    { label: 'UK', code: 'gb' },
+    { label: 'USA', code: 'us' },
+  ]
+
+  const leftCountries = countries.slice(0, 3)
+  const rightCountries = countries.slice(3)
+
   return (
     <motion.main
       initial={{ opacity: 0, y: 8 }}
@@ -41,43 +53,69 @@ function SuccessStory() {
                     hidden: { opacity: 0, x: -18 },
                     show: { opacity: 1, x: 0, transition: { staggerChildren: 0.08 } },
                   }}
-                  className="absolute inset-0 hidden md:block"
+                  className="absolute inset-0 hidden md:flex"
                 >
-                  {[
-                    { label: 'NEW ZEALAND', code: 'nz', top: '26%', left: '12%' },
-                    { label: 'AUSTRALIA', code: 'au', top: '38%', left: '9%' },
-                    { label: 'CANADA', code: 'ca', top: '50%', left: '8%' },
-                    { label: 'IRELAND', code: 'ie', top: '62%', left: '9%' },
-                    { label: 'UK', code: 'gb', top: '74%', left: '12%' },
-                    { label: 'USA', code: 'us', top: '84%', left: '22%' },
-                  ].map((it) => (
-                    <motion.div
-                      key={it.label}
-                      variants={{ hidden: { opacity: 0, x: -10 }, show: { opacity: 1, x: 0 } }}
-                      whileHover={{ x: 6, scale: 1.02 }}
-                      transition={{ type: 'spring', stiffness: 320, damping: 20 }}
-                      style={{ top: it.top, left: it.left }}
-                      onClick={() => navigate(`/certificate/${it.code}`, { state: { countryLabel: it.label } })}
-                      onKeyDown={(e) => {
-                        if (e.key !== 'Enter' && e.key !== ' ') return
-                        e.preventDefault()
-                        navigate(`/certificate/${it.code}`, { state: { countryLabel: it.label } })
-                      }}
-                      role="button"
-                      tabIndex={0}
-                      className="pointer-events-auto absolute flex cursor-pointer select-none items-center gap-4"
-                    >
-                      <div className="text-sm font-semibold tracking-widest text-white/90">{it.label}</div>
-                      <div className="h-14 w-14 overflow-hidden rounded-full border border-white/25 bg-white shadow-soft">
-                        <img
-                          src={`https://flagcdn.com/w80/${it.code}.png`}
-                          alt={`${it.label} flag`}
-                          className="h-full w-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
+                  <div className="flex w-full items-center justify-between px-10">
+                    <div className="flex flex-col gap-10">
+                      {leftCountries.map((it) => (
+                        <motion.div
+                          key={it.label}
+                          variants={{ hidden: { opacity: 0, x: -10 }, show: { opacity: 1, x: 0 } }}
+                          whileHover={{ x: 6, scale: 1.02 }}
+                          transition={{ type: 'spring', stiffness: 320, damping: 20 }}
+                          onClick={() => navigate(`/certificate/${it.code}`, { state: { countryLabel: it.label } })}
+                          onKeyDown={(e) => {
+                            if (e.key !== 'Enter' && e.key !== ' ') return
+                            e.preventDefault()
+                            navigate(`/certificate/${it.code}`, { state: { countryLabel: it.label } })
+                          }}
+                          role="button"
+                          tabIndex={0}
+                          className="pointer-events-auto flex cursor-pointer select-none items-center gap-4"
+                        >
+                          <div className="text-sm font-semibold tracking-widest text-white/90">{it.label}</div>
+                          <div className="h-14 w-14 overflow-hidden rounded-full border border-white/25 bg-white shadow-soft">
+                            <img
+                              src={`https://flagcdn.com/w80/${it.code}.png`}
+                              alt={`${it.label} flag`}
+                              className="h-full w-full object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-col items-end gap-10">
+                      {rightCountries.map((it) => (
+                        <motion.div
+                          key={it.label}
+                          variants={{ hidden: { opacity: 0, x: 10 }, show: { opacity: 1, x: 0 } }}
+                          whileHover={{ x: -6, scale: 1.02 }}
+                          transition={{ type: 'spring', stiffness: 320, damping: 20 }}
+                          onClick={() => navigate(`/certificate/${it.code}`, { state: { countryLabel: it.label } })}
+                          onKeyDown={(e) => {
+                            if (e.key !== 'Enter' && e.key !== ' ') return
+                            e.preventDefault()
+                            navigate(`/certificate/${it.code}`, { state: { countryLabel: it.label } })
+                          }}
+                          role="button"
+                          tabIndex={0}
+                          className="pointer-events-auto flex cursor-pointer select-none items-center gap-4"
+                        >
+                          <div className="h-14 w-14 overflow-hidden rounded-full border border-white/25 bg-white shadow-soft">
+                            <img
+                              src={`https://flagcdn.com/w80/${it.code}.png`}
+                              alt={`${it.label} flag`}
+                              className="h-full w-full object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                          <div className="text-sm font-semibold tracking-widest text-white/90">{it.label}</div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
                 </motion.div>
               </div>
             </div>

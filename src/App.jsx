@@ -17,6 +17,7 @@ import StudyInIreland from './pages/StudyInIreland'
 import StudyInUK from './pages/StudyInUK'
 import StudyInNewZealand from './pages/StudyInNewZealand'
 import StudyInUSA from './pages/StudyInUSA'
+import StudyAbroadApplicationForm from './pages/StudyAbroadApplicationForm'
 
 function App() {
   const [open, setOpen] = useState(false)
@@ -86,6 +87,7 @@ function App() {
           <Route path="/certificate/:country" element={<Certificate />} />
           <Route path="/location" element={<Location />} />
           <Route path="/news-updates" element={<NewsUpdates />} />
+          <Route path="/study-abroad-application" element={<StudyAbroadApplicationForm />} />
           <Route path="/contact" element={<Contact onOpenModal={openModal} />} />
           <Route path="/study-in-australia" element={<StudyInAustralia onOpenModal={openModal} />} />
           <Route path="/study-in-canada" element={<StudyInCanada onOpenModal={openModal} />} />

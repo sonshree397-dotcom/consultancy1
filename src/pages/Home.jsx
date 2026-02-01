@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import toast from 'react-hot-toast'
 import Hero from '../components/Hero'
 import CountUp from '../components/CountUp'
 import SocialLinks from '../components/SocialLinks'
@@ -31,7 +30,7 @@ function Home({ onOpenModal }) {
   }, [])
 
   const onApplyNow = () => {
-    toast.success('Application started. We will contact you shortly.')
+    navigate('/study-abroad-application')
   }
 
   const validateHomeContact = (v) => {
@@ -221,6 +220,54 @@ function Home({ onOpenModal }) {
               </AnimatePresence>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 pb-14">
+          <div className="text-center">
+            <div className="text-xs font-semibold tracking-widest text-slate-500">OUR PARTNERS</div>
+            <h2 className="mt-3 text-3xl font-extrabold text-slate-900 md:text-4xl">We work with</h2>
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="marquee">
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent" />
+
+              <div className="marquee__track gap-6 py-2">
+                {[
+                  '/1.jpg',
+                  '/2.png',
+                  '/3.png',
+                  '/4.png',
+                  '/5.png',
+                  '/6.png',
+                  '/7.jpg',
+                  '/8.png',
+                  '/9.png',
+                  '/10.png',
+                  '/1.jpg',
+                  '/2.png',
+                  '/3.png',
+                  '/4.png',
+                  '/5.png',
+                  '/6.png',
+                  '/7.jpg',
+                  '/8.png',
+                  '/9.png',
+                  '/10.png',
+                ].map((src, i) => (
+                  <div
+                    key={`${src}-${i}`}
+                    className="grid h-20 w-44 place-items-center rounded-2xl border border-slate-200 bg-white p-4"
+                  >
+                    <img src={src} alt={`Partner ${i + 1}`} className="max-h-12 w-auto object-contain" loading="lazy" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

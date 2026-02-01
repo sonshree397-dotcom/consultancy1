@@ -1,13 +1,11 @@
 import { motion } from 'framer-motion'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import SocialLinks from '../components/SocialLinks'
-import { useSuccessStories } from '../context/SuccessStoriesContext'
 
 function Certificate() {
   const { country } = useParams()
   const location = useLocation()
-  const { addStory } = useSuccessStories()
 
   const countryLabel = useMemo(() => {
     const fromState = location.state?.countryLabel
@@ -15,68 +13,21 @@ function Certificate() {
     return (country || '').replace(/-/g, ' ').toUpperCase()
   }, [country, location.state])
 
-  const students = useMemo(() => {
+  const selectedStudent = useMemo(() => {
     const initialPhotoUrl = location.state?.photoUrl || ''
     const today = new Date().toISOString().slice(0, 10)
 
-    return [
-      {
-        id: 's1',
-        name: 'Aarav Sharma',
-        course: 'IELTS',
-        grade: 'A+',
-        score: '7.5',
-        issueDate: today,
-        photoUrl: initialPhotoUrl,
-        countryLabel,
-      },
-      {
-        id: 's2',
-        name: 'Sanjana Thapa',
-        course: 'PTE',
-        grade: 'A',
-        score: '79',
-        issueDate: today,
-        photoUrl: '',
-        countryLabel,
-      },
-      {
-        id: 's3',
-        name: 'Rohan Adhikari',
-        course: 'IELTS',
-        grade: 'B+',
-        score: '7.0',
-        issueDate: today,
-        photoUrl: '',
-        countryLabel,
-      },
-      {
-        id: 's4',
-        name: 'Priya Karki',
-        course: 'PTE',
-        grade: 'A+',
-        score: '82',
-        issueDate: today,
-        photoUrl: '',
-        countryLabel,
-      },
-    ]
+    return {
+      id: 's1',
+      name: 'Aarav Sharma',
+      course: 'IELTS',
+      grade: 'A+',
+      score: '7.5',
+      issueDate: today,
+      photoUrl: initialPhotoUrl,
+      countryLabel,
+    }
   }, [countryLabel, location.state])
-
-  const [selectedId, setSelectedId] = useState('s1')
-  const [search, setSearch] = useState('')
-
-  const filteredStudents = useMemo(() => {
-    const q = search.trim().toLowerCase()
-    if (!q) return students
-    return students.filter((s) => s.name.toLowerCase().includes(q))
-  }, [students, search])
-
-  const selectedStudent = useMemo(() => {
-    const existing = students.find((s) => s.id === selectedId)
-    if (existing) return existing
-    return filteredStudents[0] || students[0]
-  }, [students, filteredStudents, selectedId])
 
   const initials = useMemo(() => {
     const raw = (selectedStudent?.name || '').trim()
@@ -95,89 +46,7 @@ function Certificate() {
     >
       <section className="mx-auto max-w-6xl px-4 py-12">
         <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="text-sm font-semibold tracking-widest text-white/70">SELECT STUDENT</div>
-              <input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search student..."
-                className="hidden w-64 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none placeholder:text-white/40 focus:ring-2 focus:ring-brand-400/40 sm:block"
-              />
-            </div>
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() =>
-                  addStory({
-                    name: selectedStudent?.name || 'Student',
-                    country: selectedStudent?.countryLabel || countryLabel || '',
-                    photoUrl: selectedStudent?.photoUrl || '',
-                  })
-                }
-                className="rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10"
-              >
-                Add to Success Stories
-              </button>
-              <button
-                type="button"
-                onClick={() => window.print()}
-                className="rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-semibold text-slate-950 shadow-soft transition hover:bg-brand-400"
-              >
-                Print / Save as PDF
-              </button>
-            </div>
-          </div>
-
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search student..."
-            className="mt-4 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none placeholder:text-white/40 focus:ring-2 focus:ring-brand-400/40 sm:hidden"
-          />
-
-          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {filteredStudents.map((s) => {
-              const isActive = s.id === selectedId
-              const nameInitials = s.name
-                .trim()
-                .split(/\s+/g)
-                .slice(0, 2)
-                .map((p) => p[0]?.toUpperCase())
-                .join('')
-
-              return (
-                <motion.button
-                  key={s.id}
-                  type="button"
-                  onClick={() => setSelectedId(s.id)}
-                  whileHover={{ y: -3 }}
-                  transition={{ type: 'spring', stiffness: 320, damping: 20 }}
-                  className={`rounded-2xl border p-4 text-left transition ${
-                    isActive ? 'border-brand-400/60 bg-white/10' : 'border-white/10 bg-white/5 hover:bg-white/10'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 overflow-hidden rounded-full border border-white/10 bg-white/10">
-                      {s.photoUrl ? (
-                        <img src={s.photoUrl} alt={s.name} className="h-full w-full object-cover" />
-                      ) : (
-                        <div className="grid h-full w-full place-items-center text-sm font-extrabold text-white/80">
-                          {nameInitials}
-                        </div>
-                      )}
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold text-white">{s.name}</div>
-                      <div className="mt-0.5 text-xs text-white/60">{s.course}</div>
-                    </div>
-                  </div>
-                </motion.button>
-              )
-            })}
-          </div>
-
-          <div className="mt-6 mx-auto w-full max-w-4xl rounded-3xl bg-white p-2 text-slate-900 shadow-[0_25px_90px_rgba(0,0,0,0.55)]">
+          <div className="mx-auto w-full max-w-4xl rounded-3xl bg-white p-2 text-slate-900 shadow-[0_25px_90px_rgba(0,0,0,0.55)]">
             <div className="relative overflow-hidden rounded-[22px] border-2 border-slate-200 bg-white p-8 md:p-10">
               <div className="pointer-events-none absolute -left-28 -top-28 h-64 w-64 rounded-full bg-brand-100/60" />
               <div className="pointer-events-none absolute -bottom-28 -right-28 h-72 w-72 rounded-full bg-slate-100" />
