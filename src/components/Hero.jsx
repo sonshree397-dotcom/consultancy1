@@ -56,7 +56,7 @@ function Hero({ onOpenModal, onApplyNow }) {
         { t: 'No worries !', c: 'text-white' },
       ],
       subLines: [
-        { t: 'Get good scholarships from giec', c: 'text-white/80' },
+        { t: 'Get good scholarships from Gecko Works Nepal', c: 'text-white/80' },
         { t: 'Our mentors guide you', c: 'text-white/80' },
       ],
       ctaPrimary: 'Apply now',
@@ -73,7 +73,7 @@ function Hero({ onOpenModal, onApplyNow }) {
       ],
       subLines: [
         { t: 'IELTS   TOEFL   PTE   Duolingo', c: 'text-brand-200/90 font-semibold' },
-        { t: 'GIEC is your test destination', c: 'text-white/85 font-semibold' },
+        { t: 'Gecko Works Nepal is your test destination', c: 'text-white/85 font-semibold' },
         { t: 'Personalize classes  ·  Free Mock test  ·  Interactive classed', c: 'text-white/70' },
       ],
       ctaPrimary: 'Book a class',

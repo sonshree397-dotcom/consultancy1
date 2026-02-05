@@ -155,7 +155,7 @@ function TestPreparation() {
             <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm md:p-9">
               <div className="prose prose-slate prose-sm max-w-none leading-snug prose-p:my-2 prose-li:my-1 prose-ul:my-2 prose-h2:mb-3 prose-h2:mt-8 prose-h2:border-b prose-h2:border-slate-200 prose-h2:pb-2 prose-strong:text-slate-900">
               <p>
-                At GIEC International Education, we understand the importance of achieving excellent test scores to secure
+                At Gecko Works Nepal, we understand the importance of achieving excellent test scores to secure
                 admission to top universities abroad.
               </p>
               <p>
@@ -207,7 +207,7 @@ function TestPreparation() {
                 </li>
               </ul>
               <p>
-                At GIEC, our TOEFL preparation classes focus on developing these skills through practice tests, interactive
+                At Gecko Works Nepal, our TOEFL preparation classes focus on developing these skills through practice tests, interactive
                 sessions, and personalized feedback to ensure you achieve a high score.
               </p>
 
@@ -253,7 +253,7 @@ function TestPreparation() {
                 </li>
               </ul>
               <p>
-                GIEC’s IELTS preparation classes are designed to cover all these sections comprehensively, with practice
+                Gecko Works Nepal’s IELTS preparation classes are designed to cover all these sections comprehensively, with practice
                 tests, interactive activities, and detailed feedback to help you excel.
               </p>
 
@@ -285,7 +285,7 @@ function TestPreparation() {
                 </li>
               </ul>
               <p>
-                At GIEC, we offer Duolingo test preparation classes that include practice questions, mock tests, and
+                At Gecko Works Nepal, we offer Duolingo test preparation classes that include practice questions, mock tests, and
                 personalized coaching to ensure you are well-prepared for the test’s unique format.
               </p>
 
@@ -324,7 +324,7 @@ function TestPreparation() {
                 </li>
               </ul>
               <p>
-                GIEC’s PTE preparation classes cover all these sections thoroughly, with practice tests, interactive exercises,
+                Gecko Works Nepal’s PTE preparation classes cover all these sections thoroughly, with practice tests, interactive exercises,
                 and personalized feedback to help you achieve a high score.
               </p>
               </div>
@@ -442,7 +442,7 @@ function TestPreparation() {
               <a href="/#home" className="inline-flex items-center">
                 <img
                   src="/logo.png"
-                  alt="GIEC abroad consultant"
+                  alt="Gecko Works Nepal abroad consultant"
                   className="h-12 w-auto select-none opacity-95 transition hover:opacity-100 hover:brightness-110 hover:drop-shadow-[0_0_18px_rgba(16,185,129,0.55)]"
                   draggable={false}
                 />
@@ -499,7 +499,7 @@ function TestPreparation() {
             </div>
           </div>
 
-          <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/60">© {new Date().getFullYear()} GIEC. All rights reserved. Powered by Gecko Works Nepal</div>
+          <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/60">© {new Date().getFullYear()} Gecko Works Nepal. All rights reserved. Powered by Gecko Works Nepal</div>
         </div>
       </footer>
     </motion.main>

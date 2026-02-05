@@ -9,14 +9,14 @@ function SocialLinks({ variant = 'footer', className = '' }) {
   const items = [
     {
       label: 'Facebook',
-      href: 'https://www.facebook.com/giecintl',
+      href: 'https://www.facebook.com/geckointl',
       svg: (
         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
       ),
     },
     {
       label: 'Instagram',
-      href: 'https://www.instagram.com/giec_education/',
+      href: 'https://www.instagram.com/gecko_education/',
       svg: (
         <>
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -38,7 +38,7 @@ function SocialLinks({ variant = 'footer', className = '' }) {
     },
     {
       label: 'YouTube',
-      href: 'https://www.youtube.com/@giecintl',
+      href: 'https://www.youtube.com/@geckointl',
       svg: (
         <>
           <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
@@ -48,7 +48,7 @@ function SocialLinks({ variant = 'footer', className = '' }) {
     },
     {
       label: 'TikTok',
-      href: 'https://www.tiktok.com/@giec_consultancy',
+      href: 'https://www.tiktok.com/@gecko_consultancy',
       svg: (
         <>
           <path d="M16 3c.3 2.7 2.2 4.8 5 5v3c-1.9 0-3.6-.6-5-1.6V17a5 5 0 1 1-5-5c.3 0 .7 0 1 .1V15a2 2 0 1 0 2 2V3h2z" />

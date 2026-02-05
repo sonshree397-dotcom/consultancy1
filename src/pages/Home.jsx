@@ -117,7 +117,7 @@ function Home({ onOpenModal }) {
               Your Destination <span className="text-brand-600">→</span> Our Guidance
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
-              Choosing where to study abroad is a big decision. At GIEC International Education, we help students from Nepal find the perfect place to pursue their dreams.
+              Choosing where to study abroad is a big decision. At Gecko Works Nepal, we help students from Nepal find the perfect place to pursue their dreams.
             </p>
             <button
               type="button"
@@ -279,7 +279,7 @@ function Home({ onOpenModal }) {
             <div className="bg-brand-600 px-7 py-10 text-white md:px-10">
               <div className="text-xs font-semibold text-white/90">Start Your Study abroad journey</div>
               <div className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">
-                Embarking on your study abroad journey with GIEC International Education means receiving comprehensive support from start to finish.
+                Embarking on your study abroad journey with Gecko Works Nepal means receiving comprehensive support from start to finish.
               </div>
               <button
                 type="button"
@@ -579,10 +579,10 @@ function Home({ onOpenModal }) {
                 <div>
                   <div className="text-white/60">Any Questions? Email us</div>
                   <a
-                    href="mailto:admin@giecintl.com.np"
+                    href="mailto:admin@geckointl.com.np"
                     className="mt-1 inline-block text-lg font-semibold text-white hover:text-brand-300"
                   >
-                    admin@giecintl.com.np
+                    admin@geckointl.com.np
                   </a>
                 </div>
                 <button
@@ -605,7 +605,7 @@ function Home({ onOpenModal }) {
               <a href="/#home" className="inline-flex items-center">
                 <img
                   src="/logo.png"
-                  alt="GIEC abroad consultant"
+                  alt="Gecko Works Nepal abroad consultant"
                   className="h-12 w-auto select-none opacity-95 transition hover:opacity-100 hover:brightness-110 hover:drop-shadow-[0_0_18px_rgba(16,185,129,0.55)]"
                   draggable={false}
                 />
@@ -684,7 +684,7 @@ function Home({ onOpenModal }) {
           </div>
 
           <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/60">
-            © {new Date().getFullYear()} GIEC. All rights reserved. Powered by Gecko Works Nepal
+            © {new Date().getFullYear()} Gecko Works Nepal. All rights reserved. Powered by Gecko Works Nepal
           </div>
         </div>
       </footer>

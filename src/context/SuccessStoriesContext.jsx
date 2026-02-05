@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 const SuccessStoriesContext = createContext(null)
 
-const STORAGE_KEY = 'giec_success_stories'
+const STORAGE_KEY = 'gecko_success_stories'
 
 function getInitialStories() {
   try {

@@ -106,7 +106,7 @@ function About() {
       year: '2024',
       side: 'left',
       title: 'Rebranding',
-      sub: 'GIEC international Education Pvt Ltd officially rebranded to new name, logos and mission.',
+      sub: 'Gecko Works Nepal officially rebranded to new name, logos and mission.',
       footer:
         'Expansion and network building under new brand leveraging existing infrastructure, experience and networks',
     },
@@ -232,7 +232,7 @@ function About() {
               <a href="/#home" className="inline-flex items-center">
                 <img
                   src="/logo.png"
-                  alt="GIEC abroad consultant"
+                  alt="Gecko Works Nepal abroad consultant"
                   className="h-12 w-auto select-none opacity-95 transition hover:opacity-100 hover:brightness-110 hover:drop-shadow-[0_0_18px_rgba(16,185,129,0.55)]"
                   draggable={false}
                 />
@@ -310,7 +310,7 @@ function About() {
             </div>
           </div>
 
-          <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/60">© {new Date().getFullYear()} GIEC. All rights reserved. Powered by Gecko Works Nepal</div>
+          <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/60">© {new Date().getFullYear()} Gecko Works Nepal. All rights reserved. Powered by Gecko Works Nepal</div>
         </div>
       </footer>
     </motion.main>

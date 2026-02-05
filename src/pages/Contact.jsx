@@ -85,7 +85,7 @@ function Contact({ onOpenModal: _onOpenModal }) {
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
           >
-            <div className="text-base font-semibold text-slate-500">GIEC International Education</div>
+            <div className="text-base font-semibold text-slate-500">Gecko Works Nepal</div>
             <div className="mt-4 space-y-4 text-base text-slate-700">
               <div>
                 <div className="font-semibold text-slate-900">Address :</div>
@@ -104,8 +104,8 @@ function Contact({ onOpenModal: _onOpenModal }) {
               </div>
               <div>
                 <div className="font-semibold text-slate-900">Email :</div>
-                <a href="mailto:admin@giecintl.com.np" className="mt-2 inline-block hover:text-brand-700">
-                  admin@giecintl.com.np
+                <a href="mailto:admin@geckointl.com.np" className="mt-2 inline-block hover:text-brand-700">
+                  admin@geckointl.com.np
                 </a>
               </div>
             </div>
@@ -239,11 +239,10 @@ function Contact({ onOpenModal: _onOpenModal }) {
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200">
             <iframe
-              title="GIEC Location"
+              title="Gecko Works Nepal Location"
               src="https://www.google.com/maps?q=Putalisadak%2028%2C%20Opposite%20Valley%20Hospital%2C%20Kathmandu&output=embed"
               className="h-[320px] w-full"
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
         </div>
@@ -262,7 +261,7 @@ function Contact({ onOpenModal: _onOpenModal }) {
               <a href="/#home" className="inline-flex items-center">
                 <img
                   src="/logo.png"
-                  alt="GIEC abroad consultant"
+                  alt="Gecko Works Nepal abroad consultant"
                   className="h-12 w-auto select-none opacity-95 transition hover:opacity-100 hover:brightness-110 hover:drop-shadow-[0_0_18px_rgba(16,185,129,0.55)]"
                   draggable={false}
                 />
@@ -340,7 +339,7 @@ function Contact({ onOpenModal: _onOpenModal }) {
             </div>
           </div>
 
-          <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/60">© {new Date().getFullYear()} GIEC. All rights reserved. Powered by Gecko Works Nepal</div>
+          <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/60">© {new Date().getFullYear()} Gecko Works Nepal. All rights reserved. Powered by Gecko Works Nepal</div>
         </div>
       </motion.footer>
     </motion.main>

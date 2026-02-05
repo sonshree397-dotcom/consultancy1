@@ -92,7 +92,7 @@ function Navbar() {
         <button type="button" onClick={() => onNav('/')} className="group inline-flex items-center">
           <img
             src="/logo.png"
-            alt="GIEC abroad consultant"
+            alt="Gecko Works Nepal abroad consultant"
             className="h-14 w-auto select-none opacity-95 transition group-hover:opacity-100 group-hover:brightness-110 group-hover:drop-shadow-[0_0_18px_rgba(16,185,129,0.55)]"
             draggable={false}
           />
