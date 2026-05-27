@@ -81,8 +81,8 @@ function NewsUpdates() {
     [],
   )
 
-  const [articleCount, setArticleCount] = useState(4)
-  const [updateCount, setUpdateCount] = useState(2)
+  const [articleCount] = useState(articles.length)
+  const [updateCount] = useState(updates.length)
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [newsletterError, setNewsletterError] = useState('')
   const [newsletterTouched, setNewsletterTouched] = useState(false)
@@ -119,101 +119,98 @@ function NewsUpdates() {
       transition={{ duration: 0.22 }}
       className="bg-white text-slate-900"
     >
-      <section className="bg-slate-600">
+      <section className="relative overflow-hidden bg-slate-950">
+        <div className="absolute inset-0">
+          <img src="/tokyo.webp" alt="" className="h-full w-full object-cover opacity-40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/55 to-slate-950/30" />
+        </div>
+
         <motion.div
           variants={reveal}
           initial="hidden"
           animate="show"
-          className="mx-auto max-w-6xl px-4 py-24 md:py-36"
+          className="relative mx-auto max-w-6xl px-4 py-16 md:py-24"
         >
-          <h1 className="text-center text-5xl font-extrabold text-white md:text-7xl">News/Updates</h1>
+          <div className="text-center">
+            <div className="text-sm font-semibold tracking-wide text-white/70">News &amp; Updates</div>
+            <h1 className="mt-3 text-4xl font-extrabold text-white md:text-6xl">Latest articles, announcements, and guidance</h1>
+            <div className="mx-auto mt-4 max-w-2xl text-sm text-white/75 md:text-base">
+              Explore scholarship information, country-specific updates, and practical tips to plan your study abroad journey.
+            </div>
+          </div>
         </motion.div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-4 py-14">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
+      <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-14">
           <section>
-            <h1 className="text-4xl font-extrabold tracking-tight">Articles</h1>
+            <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">Articles</h2>
+            <div className="mt-2 text-sm text-slate-600">Deep dives, student guidance, and destination insights.</div>
 
             <motion.div
               variants={stagger}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
-              className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2"
+              className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
             >
               {articles.slice(0, articleCount).map((a) => (
                 <motion.article
                   key={a.title}
                   variants={reveal}
                   transition={{ duration: 0.25, ease: 'easeOut' }}
-                  className="rounded-2xl border border-slate-200 bg-white p-6"
+                  className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg"
                 >
-                  <div className="text-sm font-bold text-slate-900">{a.title}</div>
+                  <div className="text-base font-extrabold text-slate-900">{a.title}</div>
                   <div className="mt-3 text-sm leading-relaxed text-slate-600">{a.body}</div>
                   <button
                     type="button"
                     onClick={() => onLearnMore(a)}
-                    className="mt-4 inline-flex text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800"
                   >
                     Learn More
+                    <span aria-hidden="true">→</span>
                   </button>
                 </motion.article>
               ))}
             </motion.div>
 
-            <div className="mt-10 flex justify-center">
-              <button
-                type="button"
-                onClick={() => setArticleCount((c) => Math.min(c + 2, articles.length))}
-                className="rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
-                disabled={articleCount >= articles.length}
-              >
-                Load More
-              </button>
-            </div>
+
           </section>
 
           <section>
-            <h2 className="text-4xl font-extrabold tracking-tight">News and Updates</h2>
+            <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">News and Updates</h2>
+            <div className="mt-2 text-sm text-slate-600">Policy changes, deadlines, and important announcements.</div>
 
             <motion.div
               variants={stagger}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
-              className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2"
+              className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
             >
               {updates.slice(0, updateCount).map((u) => (
                 <motion.article
                   key={u.title}
                   variants={reveal}
                   transition={{ duration: 0.25, ease: 'easeOut' }}
-                  className="rounded-2xl border border-slate-200 bg-white p-6"
+                  className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg"
                 >
-                  <div className="text-sm font-bold text-slate-900">{u.title}</div>
+                  <div className="text-base font-extrabold text-slate-900">{u.title}</div>
                   <div className="mt-3 text-sm leading-relaxed text-slate-600">{u.body}</div>
                   <button
                     type="button"
                     onClick={() => onLearnMore(u)}
-                    className="mt-4 inline-flex text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800"
                   >
                     Learn More
+                    <span aria-hidden="true">→</span>
                   </button>
                 </motion.article>
               ))}
             </motion.div>
 
-            <div className="mt-10 flex justify-center">
-              <button
-                type="button"
-                onClick={() => setUpdateCount((c) => Math.min(c + 2, updates.length))}
-                className="rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
-                disabled={updateCount >= updates.length}
-              >
-                Load More
-              </button>
-            </div>
+
           </section>
         </div>
       </div>

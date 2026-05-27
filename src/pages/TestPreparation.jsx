@@ -153,7 +153,7 @@ function TestPreparation() {
             className="md:col-span-8"
           >
             <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm md:p-9">
-              <div className="prose prose-slate prose-sm max-w-none leading-snug prose-p:my-2 prose-li:my-1 prose-ul:my-2 prose-h2:mb-3 prose-h2:mt-8 prose-h2:border-b prose-h2:border-slate-200 prose-h2:pb-2 prose-strong:text-slate-900">
+              <div className="prose prose-slate prose-sm max-w-none leading-relaxed prose-p:my-4 prose-li:my-2 prose-ul:my-4 prose-h2:mb-4 prose-h2:mt-10 prose-h2:border-b prose-h2:border-slate-200 prose-h2:pb-2 prose-strong:text-slate-900 sm:prose-base">
               <p>
                 At Gecko Works Nepal, we understand the importance of achieving excellent test scores to secure
                 admission to top universities abroad.
