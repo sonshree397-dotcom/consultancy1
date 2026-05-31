@@ -158,9 +158,10 @@ function Certificate() {
               <div className="text-sm font-semibold text-white">Quick Links</div>
               <div className="mt-3 grid gap-2 text-sm text-white/70">
                 {[
-                  { t: 'Home', h: '/#home' },
+                  { t: 'Home', h: '/' },
                   { t: 'About Us', h: '/about' },
-                  { t: 'News/Updates', h: '/news-updates' },
+                  { t: 'Services', h: '/education-counseling' },
+                  { t: 'News', h: '/news-updates' },
                   { t: 'Contact', h: '/contact' },
                 ].map((l) => (
                   <a key={l.t} href={l.h} className="hover:text-white">
